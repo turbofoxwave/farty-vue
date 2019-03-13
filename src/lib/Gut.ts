@@ -1,3 +1,7 @@
+/* Copyright (C) Michael Benjamin - All Rights Reserved
+ * Written by Michael Benjamin <turbofoxwave@gmail.com>, August 2017
+ */
+
 /////
 // Gut -
 // purpose: to take in food items and digest them. based on digestion effects on the gut fart components are produced and formulate

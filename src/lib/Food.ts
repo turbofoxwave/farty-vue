@@ -1,3 +1,7 @@
+/* Copyright (C) Michael Benjamin - All Rights Reserved
+ * Written by Michael Benjamin <turbofoxwave@gmail.com>, August 2017
+ */
+
 export class Food {
     public id: string;
     public name: string;
