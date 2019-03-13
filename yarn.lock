@@ -2480,6 +2480,11 @@ convert-source-map@^1.1.0, convert-source-map@^1.4.0, convert-source-map@^1.5.1:
   dependencies:
     safe-buffer "~5.1.1"
 
+convnetjs@^0.3.0:
+  version "0.3.0"
+  resolved "https://registry.yarnpkg.com/convnetjs/-/convnetjs-0.3.0.tgz#2392948ed8fe67bc57de4dbcff3423a127e7c0f5"
+  integrity sha1-I5KUjtj+Z7xX3k28/zQjoSfnwPU=
+
 cookie-signature@1.0.6:
   version "1.0.6"
   resolved "https://registry.yarnpkg.com/cookie-signature/-/cookie-signature-1.0.6.tgz#e303a882b342cc3ee8ca513a79999734dab3ae2c"

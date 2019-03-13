@@ -16,6 +16,13 @@
     "ordered-imports": false,
     "object-literal-sort-keys": false,
     "no-consecutive-blank-lines": false,
-    "semicolon":[true,"always"]
+    "semicolon":[true,"always"],
+    "max-line-length":[true, 0],
+    "no-empty": [true, "allow-empty-catch", "allow-empty-functions"],
+    "variable-name": [false],
+    "only-arrow-functions": false,
+    "ban-types": false,
+    "no-any": false,
+    "no-console": false
   }
 }

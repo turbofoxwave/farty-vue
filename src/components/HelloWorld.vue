@@ -3,99 +3,286 @@
     <v-layout text-xs-center wrap>
       <v-flex xs12>
         <!-- <v-img :src="require('../assets/logo.svg')" class="my-3" contain height="200"></v-img> -->
-        <draggable class="mouth" v-model="inMouth" :group="{name: 'eating', pull: false,put:true}" @change="onChange">
-        <v-img
-          v-if="isChewing === false"
-          :src="require('../assets/still.png')"
-          class="my-3"
-          contain
-          height="200"
-          width="200"
-        ></v-img>
-        <v-img
-          v-if="isChewing === true"
-          :src="require('../assets/chewing.gif')"
-          class="my-3"
-          contain
-          height="200"
-          width="200"
-        ></v-img>
+        <draggable
+          class="mouth"
+          v-model="inMouth"
+          :group="{name: 'eating', pull: false,put:true}"
+          @change="onChange"
+        >
+          <v-img
+            v-if="isChewing === false"
+            :src="require('../assets/still.png')"
+            class="my-3"
+            contain
+            height="200"
+            width="200"
+          ></v-img>
+          <v-img
+            v-if="isChewing === true"
+            :src="require('../assets/chewing.gif')"
+            class="my-3"
+            contain
+            height="200"
+            width="200"
+          ></v-img>
         </draggable>
-        
       </v-flex>
 
-      <v-flex mb-4>
-        <v-content>
-          <h2>foods</h2>
-        </v-content>
-        <draggable class="foodBag" v-model="foodBag" :group="{ name: 'food', pull:'clone', put: false}">
-          <v-img class="foodItem" v-for="element in foodBag" :key="element.name" :src="element.file" contain height="64" width="64"></v-img>
+      <v-flex mb-4>        
+        <draggable
+          class="foodBag"
+          v-model="foodBag"
+          :group="{ name: 'food', pull:'clone', put: false}"
+        >
+          <v-img
+            class="foodItem"
+            v-for="element in foodBag"
+            :key="element.name"
+            :src="element.file"
+            contain
+            height="64"
+            width="64"
+          ></v-img>
           <!-- <div v-for="element in foodBag" :key="element.id">{{element.name}}</div> -->
         </draggable>
       </v-flex>
 
-      <v-flex mb-5 xs12></v-flex>
+      <v-flex mb-5 xs12>
+        <audio id="audio1" volume="1.0" ></audio>
+        <audio id="audio2" volume="1.0" ></audio>
+        <audio id="audio3" volume="1.0" ></audio>
+        <audio id="audio4" volume="1.0" ></audio>
+        <audio id="audio5" volume="1.0" ></audio>
+        <audio id="audio6" volume="1.0" ></audio>
+        <audio id="audio7" volume="1.0" ></audio>
+        <audio id="audio8" volume="1.0" ></audio>
+      </v-flex>
     </v-layout>
   </v-container>
+  
 </template>
 
-<script>
+<script lang="ts">
+import { Component, Prop, Vue } from 'vue-property-decorator'
 import draggable from 'vuedraggable'
-import chicken from "../assets/chicken.svg"
-import cheese from "../assets/cheese.svg"
-import hamburger from "../assets/hamburger.svg"
 
-export default {
-  data: () => ({
-    isChewing: false,
-    foodBag: [
-      { name: "chicken", file: chicken },
-      { name: "hamburger", file: hamburger },
-      { name: "cheese", file: cheese },
-    ],
-    inMouth:[],
-  }),
+
+// import snd1 from "./assets/sounds/fart-c.wav"
+// import snd2 from "./assets/sounds/fart-01.wav"
+// import snd3 from "./assets/sounds/fart-02.wav"
+// import snd4 from "./assets/sounds/fart-03.wav"
+// import snd5 from "./assets/sounds/fart-04.wav"
+// import snd6 from "./assets/sounds/fart-05.wav"
+// import snd7 from "./assets/sounds/fart-06.wav"
+
+import { Food } from '../lib/Food'
+import { FartComponent } from '../lib/FartComponent'
+import { Anus } from '../lib/Anus'
+import { Gut } from '../lib/Gut'
+import { ILog } from '../lib/ILog'
+import { Dictionary } from 'vue-router/types/router'
+import { mapMutations } from 'vuex';
+import { BasicLogger } from '../lib/BasicLogger'
+
+// We declare the props separately
+// to make props types inferable.
+// const AppProps = Vue.extend({
+//   props: {
+//     propMessage: String
+//   }
+// })
+
+@Component({
   components: {
     draggable
   },
-  methods:{
-    onChange: function(event){
-      //todo:add food to digestion system.
-      //this.inMouth.pop()
+  methods: mapMutations([
+    'mounted',
+    'onChange',
+    'onAdd',
+    'onClone'    
+  ])
+})
+export default class HelloWorld extends Vue {
+  @Prop() private msg!: string
 
-      this.isChewing = true
-      setTimeout(()=>{
-        this.isChewing = false
-      }, 3000)
+  isChewing: boolean = false
+  foodBag: Array<any> = [
+    {
+      id: 'food1',
+      name: 'chicken',
+      file: require("../assets/chicken.svg"),
+      foodObj: new Food('bread', 'bread1', 'audio', 15, 0, 0, 2)
+    },
+    {
+      id: 'food2',
+      name: 'hamburger',
+      file: require("../assets/hamburger.svg"),
+      foodObj: new Food('MEAT', 'meat1', 'audio', 0, 15, 0, 2)
+    },
+    {
+      id: 'food3',
+      name: 'cheese',
+      file: require("../assets/cheese.svg"),
+      foodObj: new Food('MEAT', 'meat1', 'audio', 0, 0, 15, 2)
+    }
+  ]
 
-      console.log(event)
-    },
-    onAdd: function(event){
-      //this.inMouth.pop()
-      console.log(event)
-    },
-	  onClone: function (/**Event*/evt) {
-      var origEl = evt.item;
-      var cloneEl = evt.clone;
-      console.log(origEl)
-      console.log(cloneEl)
-    },
+  inMouth: Array<any> = []
+
+  _log: ILog = new BasicLogger();
+
+  _anus!: Anus
+  _gut!: Gut
+  digestionInterval: any
+
+
+  fartComponents: Array<FartComponent> = [
+    new FartComponent('f1', 0, 0, 10,[require('../assets/sounds/fart-c.wav')]),
+    new FartComponent('f2', 1, 4, 5, [require('../assets/sounds/fart-01.wav')]),
+    new FartComponent('f3', 5, 2, 3, [require('../assets/sounds/fart-02.wav')]),
+    new FartComponent('f4', 5, 3, 2, [require('../assets/sounds/fart-03.wav')]),
+    new FartComponent('f5', 3, 3, 4, [require('../assets/sounds/fart-04.wav')]),
+    new FartComponent('f6', 5, 0, 5, [require('../assets/sounds/fart-05.wav')]),
+    new FartComponent('f7', 0, 10, 0,[require('../assets/sounds/fart-06.wav')])
+  ]
+
+  // fartSounds: Array<any> = [
+  //   require('../assets/sounds/fart-c.wav'),
+  //   require('../assets/sounds/fart-01.wav'),
+  //   require('../assets/sounds/fart-02.wav'),
+  //   require('../assets/sounds/fart-03.wav'),
+  //   require('../assets/sounds/fart-04.wav'),
+  //   require('../assets/sounds/fart-05.wav'),
+  //   require('../assets/sounds/fart-06.wav')
+  // ]
+
+  // foods: Dictionary<Food> = {
+  //   food1: new Food('bread', 'bread1', 'audio', 5, 0, 0, 1),
+  //   food2: new Food('MEAT', 'meat1', 'audio', 0, 5, 0, 1),
+  //   food3: new Food('MEAT', 'meat1', 'audio', 0, 0, 5, 1),
+  //   food4: new Food('MEAT', 'meat1', 'audio', 5, 5, 0, 1),
+  //   food5: new Food('MEAT', 'meat1', 'audio', 0, 5, 5, 1),
+  //   food6: new Food('MEAT', 'meat1', 'audio', 5, 5, 5, 1),
+  //   food7: new Food('MEAT', 'meat1', 'audio', 5, 0, 5, 1)
+  // }
+
+  audioChannels: Dictionary<boolean> = {
+    audio1: true,
+    audio2: true,
+    audio3: true,
+    audio4: true,
+    audio5: true,
+    audio6: true,
+    audio7: true,
+    audio8: true
   }
+
+ 
+
+  mounted() {
+      if (this._anus) return;
+      this._log = new BasicLogger();
+      this._anus = new Anus({ log: this._log, playHandler: (fartComponent, delay) => {
+          this._log.info("delay: " + delay)
+          setTimeout(() => {
+            let channel = this.getAudioChannel();
+            channel = "#" + channel;
+            this._log.info("play: " + fartComponent.getSoundId() + " on channel:" + channel);
+            let audioElement
+            audioElement = document.querySelector(channel);
+            audioElement.setAttribute('src', fartComponent.getSoundId());
+            try {
+              audioElement.play();
+            } catch(err){
+              this._log.error(err)
+            }
+          }, delay);
+        }
+      });
+
+      this._gut = new Gut({ anus: this._anus, log: this._log, fartComponents: this.fartComponents });
+      let self = this
+      // not valid until _gut and _anus are created
+      this.digestionInterval = setInterval(() => {
+          self._gut
+            .digestFood()
+            // .then(() => {
+            //   self._log.debug('digest pass complete')
+            // })
+            .catch(err => {
+              self._log.error(err)
+            })
+        }, 100)
+
+
+      console.log("************** view checked *********************")
+
+      //setup audio channels
+      for (let i = 1; i < 9; i++) {
+        this.setupAudioChannel("#audio" + i, "audio" + i);
+      }
+  }
+
+
+  onChange(event) {
+    //todo:add food to digestion system.
+    this.$data.isChewing = true
+    setTimeout(() => {
+      this.$data.isChewing = false
+    }, 3000)
+
+    this.eatFood(event.added.element.foodObj)
+
+  }
+  onAdd(event) {
+  }
+
+  onClone(/**Event*/ evt) {
+  }
+
+  getAudioChannel() {
+    for (let a in this.$data.audioChannels) {
+      if (this.$data.audioChannels[a]) {
+        this.$data.audioChannels[a] = false
+        return a
+      }
+    }
+    //todo: we need to implement a wait for audio channel.. or maybe we just overwrite like we are doing here. on channel 1.
+    return 'audio1'
+  }
+
+  returnAudioChannel(id){
+    this.$data.audioChannels[id] = true
+  }
+
+  eatFood(foodObj) {
+    this._gut.eatFood(foodObj.getClone())
+  }
+
+  setupAudioChannel(domId, name) {
+    let ele = document.querySelector(domId)
+    ele.onended = () => {
+      this.returnAudioChannel(name)      
+    }
+  }
+
 }
+
 </script>
 
 <style>
-.foodItem{
-  display:flex;
-  float:left;
+.foodItem {
+  display: flex;
+  float: left;
 }
-.foodBag{
-  display:inline-flex;
+.foodBag {
+  display: inline-flex;
 }
-.mouth{
-  display:inline-flex;
+.mouth {
+  display: inline-flex;
 }
-.sortable-ghost{
-  display:none;
+.sortable-ghost {
+  display: none;
 }
 </style>
