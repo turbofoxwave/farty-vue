@@ -2,6 +2,8 @@
   <v-container>
     <v-layout text-xs-center wrap>
       <v-flex xs12>
+        <h1>Feed Patrick! Drag some food onto his face.</h1>
+        <h3>Try different combinations</h3>
         <!-- <v-img :src="require('../assets/logo.svg')" class="my-3" contain height="200"></v-img> -->
         <draggable
           class="mouth"
