@@ -4,13 +4,12 @@ import { FartComponent } from './FartComponent';
 
 export class Anus {
 
-        public log: ILog = { info() {}, debug() {}, error() {}};
-        public startTime!: number;
-        public timeThreshold!: number;
-        public queueThreshold!: number;
-        public fartSpan!: number;
-        public fartComponentQueue: FartComponent[] = []; // todo: switch type
- // todo: switch type
+        private log: ILog = { info() {}, debug() {}, error() {}};
+        private startTime!: number;
+        private timeThreshold!: number;
+        private queueThreshold!: number;
+        private fartSpan!: number;
+        private fartComponentQueue: FartComponent[] = [];
 
 
         constructor(opts) {
@@ -61,10 +60,6 @@ export class Anus {
             // check constraints.
             // release?
 
-        }
-
-        public updateTick() {
-           // var fartComp = this.fartComponentQueue.pop();
         }
 
         private init(opts) {

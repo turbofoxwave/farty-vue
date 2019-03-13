@@ -5,11 +5,11 @@ import * as convnetjs from 'convnetjs';
 
 export class FartClassifier {
 
-    public log: ILog = { info() {}, debug() {}, error() {}};
-    public net: any;
-    public targets: number[][] = [];
-    public targetRanges: number[][] = [];
-    public trainer: any;
+    private log: ILog = { info() {}, debug() {}, error() {}};
+    private net: any;
+    private targets: number[][] = [];
+    private targetRanges: number[][] = [];
+    private trainer: any;
 
 
     constructor(opts) {
@@ -64,5 +64,4 @@ export class FartClassifier {
         ];
 
     }
-
 }
