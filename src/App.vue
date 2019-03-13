@@ -9,23 +9,23 @@
         flat
         href="https://github.com/vuetifyjs/vuetify/releases/latest"
         target="_blank"
-      >        
+      >
       </v-btn>
     </v-toolbar>
 
     <v-content>
-      <HelloWorld/>
+      <Farty/>
     </v-content>
   </v-app>
 </template>
 
 <script>
-import HelloWorld from './components/HelloWorld'
+import Farty from './components/Farty'
 
 export default {
   name: 'App',
   components: {
-    HelloWorld
+    Farty
   },
   data () {
     return {

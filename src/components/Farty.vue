@@ -30,7 +30,7 @@
         </draggable>
       </v-flex>
 
-      <v-flex mb-4>        
+      <v-flex mb-4>
         <draggable
           class="foodBag"
           v-model="foodBag"
@@ -61,7 +61,7 @@
       </v-flex>
     </v-layout>
   </v-container>
-  
+
 </template>
 
 <script lang="ts">
@@ -102,10 +102,10 @@ import { BasicLogger } from '../lib/BasicLogger'
     'mounted',
     'onChange',
     'onAdd',
-    'onClone'    
+    'onClone'
   ])
 })
-export default class HelloWorld extends Vue {
+export default class Farty extends Vue {
   @Prop() private msg!: string
 
   isChewing: boolean = false
@@ -180,7 +180,7 @@ export default class HelloWorld extends Vue {
     audio8: true
   }
 
- 
+
 
   mounted() {
       if (this._anus) return;
@@ -265,7 +265,7 @@ export default class HelloWorld extends Vue {
   setupAudioChannel(domId, name) {
     let ele = document.querySelector(domId)
     ele.onended = () => {
-      this.returnAudioChannel(name)      
+      this.returnAudioChannel(name)
     }
   }
 
