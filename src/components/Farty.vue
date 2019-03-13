@@ -30,8 +30,19 @@
         </draggable>
       </v-flex>
 
-      <v-flex mb-4>
-        <draggable
+      <v-layout column align-center="true">
+      <v-flex v-model="foodBag" >
+         <v-img
+            class="foodItem"
+            v-for="element in foodBag"
+            :key="element.name"
+            :src="element.file"
+            contain
+            height="64"
+            width="64"
+            @click="onTriggerEatFood(element.foodObj)"
+          ></v-img>
+        <!-- <draggable
           class="foodBag"
           v-model="foodBag"
           :group="{ name: 'food', pull:'clone', put: false}"
@@ -45,9 +56,10 @@
             height="64"
             width="64"
           ></v-img>
-          <!-- <div v-for="element in foodBag" :key="element.id">{{element.name}}</div> -->
-        </draggable>
+          <!-- <div v-for="element in foodBag" :key="element.id">{{element.name}}</div>
+        </draggable> -->
       </v-flex>
+      </v-layout>
 
       <v-flex mb-5 xs12>
         <audio id="audio1" volume="1.0" ></audio>
@@ -224,6 +236,16 @@ export default class Farty extends Vue {
       for (let i = 1; i < 9; i++) {
         this.setupAudioChannel("#audio" + i, "audio" + i);
       }
+  }
+
+  onTriggerEatFood(foodObj){
+    this.$data.isChewing = true
+    setTimeout(() => {
+      this.$data.isChewing = false
+    }, 3000)
+
+    this.eatFood(foodObj)
+
   }
 
 
