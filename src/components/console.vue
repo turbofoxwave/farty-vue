@@ -2,13 +2,14 @@
   <v-container grid-list-sm>
     <v-layout text-xs-left wrap>
       <v-flex xs12>
-          <v-card>
+          <div v-for="(log,index) in logs" :key="index">{{log}}</div>
+          <!-- <v-card>
               <v-card-text v-for="(log, index)  in logs" :key="index"> {{log}} </v-card-text>
-              <!-- <v-card-text> this is where the messages display</v-card-text>
               <v-card-text> this is where the messages display</v-card-text>
               <v-card-text> this is where the messages display</v-card-text>
-              <v-card-text> this is where the messages display</v-card-text> -->
-          </v-card>
+              <v-card-text> this is where the messages display</v-card-text>
+              <v-card-text> this is where the messages display</v-card-text>
+          </v-card> -->
         <!-- todo add stuff to say -->
       </v-flex>
     </v-layout>

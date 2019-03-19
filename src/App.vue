@@ -13,19 +13,21 @@
       </v-btn>
     </v-toolbar>
   <v-content>
-  <v-container fluid grid-list-sm>
+  <v-container pa-3>
     <v-layout align-start fill-height v-bind="topLevelLayoutBinding">
-      <v-flex xs5 sm4 console-container v-bind="consolePanelBinding">
+      <v-flex pa-3 xs5 sm4 console-container v-bind="consolePanelBinding">
         <v-layout :class="this.$vuetify.breakpoint.smAndUp?'body-1':'small-console'" column>
-          <!-- <v-card dark color = "primary"> -->
+          <v-card dark color = "gray" >
             <Console/>
-          <!-- </v-card> -->
+          </v-card>
         </v-layout>
       </v-flex>
-      <v-flex v-bind="fartyPanelBinding">
-        <v-card dark color = "white">
+      <v-flex pa-3 v-bind="fartyPanelBinding">
+        <!-- <v-layout> -->
+        <v-card dark color = "gray">
           <Farty/>
         </v-card>
+        <!-- </v-layout> -->
       </v-flex>
       <v-flex md5 sm0 >
         <!-- spacer -->

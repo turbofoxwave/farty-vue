@@ -4,14 +4,16 @@
       <v-flex xs12>
         <h1>Feed Patrick!</h1>
         <h2>click on some food to feed his face</h2>
-        <h3>Try different combinations</h3>
+        <h3>Try different combinations and Feed him lots!</h3>
+
         <!-- <v-img :src="require('../assets/logo.svg')" class="my-3" contain height="200"></v-img> -->
-        <draggable
+        <!-- <draggable
           class="mouth"
           v-model="inMouth"
           :group="{name: 'eating', pull: false,put:true}"
           @change="onChange"
-        >
+        > -->
+        <v-flex mouth>
           <v-img
             v-if="isChewing === false"
             :src="require('../assets/still.png')"
@@ -28,7 +30,8 @@
             height="200"
             width="200"
           ></v-img>
-        </draggable>
+        </v-flex>
+        <!-- </draggable> -->
       </v-flex>
 
       <v-layout column align-center="true">
