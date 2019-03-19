@@ -33,7 +33,14 @@
 
       <v-layout column align-center="true">
       <v-flex v-model="foodBag" >
-         <v-img
+        <v-btn    class="foodItem"
+            v-for="element in foodBag"
+            :key="element.name"
+            contain
+            @click="onTriggerEatFood(element.foodObj)">
+            {{element.name}}
+        </v-btn>
+         <!-- <v-img
             class="foodItem"
             v-for="element in foodBag"
             :key="element.name"
@@ -42,7 +49,7 @@
             height="64"
             width="64"
             @click="onTriggerEatFood(element.foodObj)"
-          ></v-img>
+          ></v-img> -->
         <!-- <draggable
           class="foodBag"
           v-model="foodBag"
@@ -82,13 +89,13 @@ import { Component, Prop, Vue } from 'vue-property-decorator'
 import draggable from 'vuedraggable'
 
 
-// import snd1 from "./assets/sounds/fart-c.wav"
-// import snd2 from "./assets/sounds/fart-01.wav"
-// import snd3 from "./assets/sounds/fart-02.wav"
-// import snd4 from "./assets/sounds/fart-03.wav"
-// import snd5 from "./assets/sounds/fart-04.wav"
-// import snd6 from "./assets/sounds/fart-05.wav"
-// import snd7 from "./assets/sounds/fart-06.wav"
+// import snd1 from "./assets/sounds/fart-c.mp3"
+// import snd2 from "./assets/sounds/fart-01.mp3"
+// import snd3 from "./assets/sounds/fart-02.mp3"
+// import snd4 from "./assets/sounds/fart-03.mp3"
+// import snd5 from "./assets/sounds/fart-04.mp3"
+// import snd6 from "./assets/sounds/fart-05.mp3"
+// import snd7 from "./assets/sounds/fart-06.mp3"
 
 import { Food } from '../lib/Food'
 import { FartComponent } from '../lib/FartComponent'
@@ -120,7 +127,7 @@ import { BasicLogger } from '../lib/BasicLogger'
 })
 export default class Farty extends Vue {
   @Prop() private msg!: string
-
+  audioContext!:AudioContext
   isChewing: boolean = false
   foodBag: Array<any> = [
     {
@@ -143,6 +150,8 @@ export default class Farty extends Vue {
     }
   ]
 
+  isAudioInitialized: boolean = false
+
   inMouth: Array<any> = []
 
   _log: ILog = new BasicLogger();
@@ -153,23 +162,32 @@ export default class Farty extends Vue {
 
 
   fartComponents: Array<FartComponent> = [
-    new FartComponent('f1', 0, 0, 10,[require('../assets/sounds/fart-c.wav')]),
-    new FartComponent('f2', 1, 4, 5, [require('../assets/sounds/fart-01.wav')]),
-    new FartComponent('f3', 5, 2, 3, [require('../assets/sounds/fart-02.wav')]),
-    new FartComponent('f4', 5, 3, 2, [require('../assets/sounds/fart-03.wav')]),
-    new FartComponent('f5', 3, 3, 4, [require('../assets/sounds/fart-04.wav')]),
-    new FartComponent('f6', 5, 0, 5, [require('../assets/sounds/fart-05.wav')]),
-    new FartComponent('f7', 0, 10, 0,[require('../assets/sounds/fart-06.wav')])
-  ]
+    new FartComponent('f1', 0, 0, 10,[require('../assets/sounds/fart-c.mp3')]),
+    new FartComponent('f2', 1, 4, 5, [require('../assets/sounds/fart-01.mp3')]),
+    new FartComponent('f3', 5, 2, 3, [require('../assets/sounds/fart-02.mp3')]),
+    new FartComponent('f4', 5, 3, 2, [require('../assets/sounds/fart-03.mp3')]),
+    new FartComponent('f5', 3, 3, 4, [require('../assets/sounds/fart-04.mp3')]),
+    new FartComponent('f6', 5, 0, 5, [require('../assets/sounds/fart-05.mp3')]),
+    new FartComponent('f7', 0, 10, 0,[require('../assets/sounds/fart-06.mp3')])
+
+    // new FartComponent('f1', 0, 0, 10,[require('../assets/sounds/fart-c.wav')]),
+    // new FartComponent('f2', 1, 4, 5, [require('../assets/sounds/fart-01.wav')]),
+    // new FartComponent('f3', 5, 2, 3, [require('../assets/sounds/fart-02.wav')]),
+    // new FartComponent('f4', 5, 3, 2, [require('../assets/sounds/fart-03.wav')]),
+    // new FartComponent('f5', 3, 3, 4, [require('../assets/sounds/fart-04.wav')]),
+    // new FartComponent('f6', 5, 0, 5, [require('../assets/sounds/fart-05.wav')]),
+    // new FartComponent('f7', 0, 10, 0,[require('../assets/sounds/fart-06.wav')])
+
+]
 
   // fartSounds: Array<any> = [
-  //   require('../assets/sounds/fart-c.wav'),
-  //   require('../assets/sounds/fart-01.wav'),
-  //   require('../assets/sounds/fart-02.wav'),
-  //   require('../assets/sounds/fart-03.wav'),
-  //   require('../assets/sounds/fart-04.wav'),
-  //   require('../assets/sounds/fart-05.wav'),
-  //   require('../assets/sounds/fart-06.wav')
+  //   require('../assets/sounds/fart-c.mp3'),
+  //   require('../assets/sounds/fart-01.mp3'),
+  //   require('../assets/sounds/fart-02.mp3'),
+  //   require('../assets/sounds/fart-03.mp3'),
+  //   require('../assets/sounds/fart-04.mp3'),
+  //   require('../assets/sounds/fart-05.mp3'),
+  //   require('../assets/sounds/fart-06.mp3')
   // ]
 
   // foods: Dictionary<Food> = {
@@ -198,7 +216,7 @@ export default class Farty extends Vue {
   mounted() {
       if (this._anus) return;
       this._log = new BasicLogger();
-      this._anus = new Anus({ log: this._log, playHandler: (fartComponent, delay) => {
+      this._anus = new Anus({ log: this._log, playHandler: (fartComponent:FartComponent, delay) => {
           this._log.info("delay: " + delay)
           setTimeout(() => {
             let channel = this.getAudioChannel();
@@ -207,9 +225,14 @@ export default class Farty extends Vue {
             let audioElement
             audioElement = document.querySelector(channel);
             audioElement.setAttribute('src', fartComponent.getSoundId());
+            audioElement.setAttribute('type', "audio/mp3");
+
+            this.$store.dispatch('addLog', fartComponent.name)
+
             try {
               audioElement.play();
             } catch(err){
+              this.$store.dispatch('addLog', err)
               this._log.error(err)
             }
           }, delay);
@@ -240,6 +263,66 @@ export default class Farty extends Vue {
   }
 
   onTriggerEatFood(foodObj){
+
+    let vueComp = this
+    if(!this.$data.isAudioInitialized){
+      let ourWindow:any = window
+      var AudioContext = ourWindow.AudioContext || ourWindow.webkitAudioContext;
+
+      var context  = this.audioContext = new AudioContext();
+      //if (context.state === 'suspended' && 'ontouchstart' in window)
+      if (context.state === 'suspended' in window)
+      {
+          var unlock = function()
+          {
+
+              context.resume().then(function()
+              {
+                  document.body.removeEventListener('touchstart', unlock);
+                  document.body.removeEventListener('touchend', unlock);
+              });
+          };
+
+          document.body.addEventListener('touchstart', unlock, false);
+          document.body.addEventListener('touchend', unlock, false);
+      }
+
+//       try{
+//         this.$store.dispatch('addLog', "initialize audio")
+//         let audioElement
+//         audioElement= document.querySelector("#audio1")
+//         //context.createMediaElementSource(audioElement)
+//         audioElement.pause()
+//         audioElement = document.querySelector("#audio2")
+// //        context.createMediaElementSource(audioElement)
+//         audioElement.pause()
+//         audioElement = document.querySelector("#audio3")
+// //        context.createMediaElementSource(audioElement)
+//         audioElement.pause()
+//         audioElement = document.querySelector("#audio4")
+// //        context.createMediaElementSource(audioElement)
+//         audioElement.pause()
+//         audioElement = document.querySelector("#audio5")
+//       //  context.createMediaElementSource(audioElement)
+//         audioElement.pause()
+//         audioElement = document.querySelector("#audio6")
+//     //    context.createMediaElementSource(audioElement)
+//         audioElement.pause()
+//         audioElement = document.querySelector("#audio7")
+//   //      context.createMediaElementSource(audioElement)
+//         audioElement.pause()
+//         audioElement = document.querySelector("#audio8")
+// //        context.createMediaElementSource(audioElement)
+//         audioElement.pause()
+//       }catch(err){
+//         this.$store.dispatch('addLog', err)
+//       }
+
+       this.$data.isAudioInitialized = true
+    }
+
+    this.$store.dispatch('addLog', "state: "+ context.state)
+
     this.$data.isChewing = true
     setTimeout(() => {
       this.$data.isChewing = false

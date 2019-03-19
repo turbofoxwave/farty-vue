@@ -12,25 +12,96 @@
       >
       </v-btn>
     </v-toolbar>
+  <v-content>
+  <v-container fluid grid-list-sm>
+    <v-layout align-start fill-height v-bind="topLevelLayoutBinding">
+      <v-flex xs5 sm4 console-container v-bind="consolePanelBinding">
+        <v-layout :class="this.$vuetify.breakpoint.smAndUp?'body-1':'small-console'" column>
+          <!-- <v-card dark color = "primary"> -->
+            <Console/>
+          <!-- </v-card> -->
+        </v-layout>
+      </v-flex>
+      <v-flex v-bind="fartyPanelBinding">
+        <v-card dark color = "white">
+          <Farty/>
+        </v-card>
+      </v-flex>
+      <v-flex md5 sm0 >
+        <!-- spacer -->
+      </v-flex>
 
-    <v-content>
+    </v-layout>
+  </v-container>
+  </v-content>
+
+    <!-- <v-content>
+      <v-layout align-center justify-center row fill-height>
+      <Console/>
       <Farty/>
-    </v-content>
+
+      </v-layout>
+    </v-content> -->
   </v-app>
 </template>
 
 <script>
 import Farty from './components/Farty'
+import Console from './components/console'
 
 export default {
   name: 'App',
-  components: {
-    Farty
-  },
-  data () {
-    return {
-      //
+  computed: {
+    fartyPanelBinding(){
+      const binding = {}
+      if(this.$vuetify.breakpoint.smAndUp){
+        binding['order-xs1'] = false
+      } else{
+        binding['order-xs1'] = true
+      }
+      return binding
+    }
+    ,consolePanelBinding(){
+      const binding = {}
+      if(this.$vuetify.breakpoint.smAndUp){
+        binding['order-xs2'] = false
+      } else{
+        binding['order-xs2'] = true
+      }
+      return binding
+    }
+
+    ,topLevelLayoutBinding () {
+      const binding = {}
+
+      if (this.$vuetify.breakpoint.smAndUp){
+        binding.row = true
+
+      }
+      else{
+        binding.column = true
+      }
+
+      return binding
     }
   }
+  ,components: {
+    Farty
+    ,Console
+  },
+  data: () => ({
+    lorem: `Lorem ipsum dolor sit amet, mel at clita quando. Te sit oratio vituperatoribus, nam ad ipsum posidonium mediocritatem, explicari dissentiunt cu mea. Repudiare disputationi vim in, mollis iriure nec cu, alienum argumentum ius ad. Pri eu justo aeque torquatos.`
+  })
 }
 </script>
+<style>
+.small-console {
+  font-size: 10px;
+}
+
+.console-container {
+  max-width: 300px !important;
+  min-width: 300px !important;
+  width: 300px !important;
+}
+</style>
