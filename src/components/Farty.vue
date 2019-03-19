@@ -37,8 +37,13 @@
             v-for="element in foodBag"
             :key="element.name"
             contain
-            @click="onTriggerEatFood(element.foodObj)">
+            @click.native="onTriggerEatFood(element.foodObj)">
             {{element.name}}
+        </v-btn>
+        <v-btn    class="setup"
+            contain
+            @click.native="onSetup()">
+            setup
         </v-btn>
          <!-- <v-img
             class="foodItem"
@@ -150,6 +155,7 @@ export default class Farty extends Vue {
     }
   ]
 
+  hasUnlock:boolean = false
   isAudioInitialized: boolean = false
 
   inMouth: Array<any> = []
@@ -215,6 +221,7 @@ export default class Farty extends Vue {
 
   mounted() {
       if (this._anus) return;
+      let vueComp = this;
       this._log = new BasicLogger();
       this._anus = new Anus({ log: this._log, playHandler: (fartComponent:FartComponent, delay) => {
           this._log.info("delay: " + delay)
@@ -227,10 +234,15 @@ export default class Farty extends Vue {
             audioElement.setAttribute('src', fartComponent.getSoundId());
             audioElement.setAttribute('type', "audio/mp3");
 
-            this.$store.dispatch('addLog', fartComponent.name)
+            // let source = this.$data.audioContext.createMediaElementSource(audioElement)
+            // source.connect(this.$data.audioContext.destination)
+
+            this.$store.dispatch('addLog', fartComponent.name + " " + this.$data.audioContext.state)
 
             try {
-              audioElement.play();
+              audioElement.play().catch(err =>{
+                vueComp.$store.dispatch('addLog', err)
+              })
             } catch(err){
               this.$store.dispatch('addLog', err)
               this._log.error(err)
@@ -262,74 +274,120 @@ export default class Farty extends Vue {
       }
   }
 
-  onTriggerEatFood(foodObj){
-
+  onSetup(){
     let vueComp = this
     if(!this.$data.isAudioInitialized){
       let ourWindow:any = window
-      var AudioContext = ourWindow.AudioContext || ourWindow.webkitAudioContext;
+      var AudioContext = ourWindow.AudioContext || ourWindow.webkitAudioContext || ourWindow.mozAudioContext;
 
-      var context  = this.audioContext = new AudioContext();
+      var context  = this.$data.audioContext = new AudioContext();
+   //   context.suspend().then( () =>{
       //if (context.state === 'suspended' && 'ontouchstart' in window)
-      if (context.state === 'suspended' in window)
-      {
-          var unlock = function()
-          {
+      vueComp.$store.dispatch('addLog', "suspend")
 
-              context.resume().then(function()
-              {
-                  document.body.removeEventListener('touchstart', unlock);
-                  document.body.removeEventListener('touchend', unlock);
-              });
-          };
+       context.suspend().then(() =>{
+        if (context.state === 'suspended' && this.$data.hasUnlock === false)
+        {
 
-          document.body.addEventListener('touchstart', unlock, false);
-          document.body.addEventListener('touchend', unlock, false);
-      }
 
-//       try{
-//         this.$store.dispatch('addLog', "initialize audio")
-//         let audioElement
-//         audioElement= document.querySelector("#audio1")
-//         //context.createMediaElementSource(audioElement)
-//         audioElement.pause()
-//         audioElement = document.querySelector("#audio2")
-// //        context.createMediaElementSource(audioElement)
-//         audioElement.pause()
-//         audioElement = document.querySelector("#audio3")
-// //        context.createMediaElementSource(audioElement)
-//         audioElement.pause()
-//         audioElement = document.querySelector("#audio4")
-// //        context.createMediaElementSource(audioElement)
-//         audioElement.pause()
-//         audioElement = document.querySelector("#audio5")
-//       //  context.createMediaElementSource(audioElement)
-//         audioElement.pause()
-//         audioElement = document.querySelector("#audio6")
-//     //    context.createMediaElementSource(audioElement)
-//         audioElement.pause()
-//         audioElement = document.querySelector("#audio7")
-//   //      context.createMediaElementSource(audioElement)
-//         audioElement.pause()
-//         audioElement = document.querySelector("#audio8")
-// //        context.createMediaElementSource(audioElement)
-//         audioElement.pause()
-//       }catch(err){
-//         this.$store.dispatch('addLog', err)
-//       }
+            //context.resume()
+            var unlock = function()
+            {
+                vueComp.$store.dispatch('addLog', "unlock calling")
+
+
+                context.resume().then(function()
+                {
+
+                  try{
+                    vueComp.$store.dispatch('addLog', "initialize audio")
+
+                    let audioElement1= document.querySelector("#audio1") as any;
+                    let source1 = context.createMediaElementSource(audioElement1)
+                    source1.connect(context.destination)
+                    audioElement1.play()
+                    audioElement1.pause()
+
+                    let audioElement2 = document.querySelector("#audio2") as any;
+                    let source2 = context.createMediaElementSource(audioElement2)
+                    source2.connect(context.destination)
+                    audioElement2.play()
+                    audioElement2.pause()
+
+                    let audioElement3 = document.querySelector("#audio3") as any;
+                    let source3 = context.createMediaElementSource(audioElement3)
+                    source3.connect(context.destination)
+                    audioElement3.play()
+                    audioElement3.pause()
+
+                    let audioElement4 = document.querySelector("#audio4") as any;
+                    let source4 = context.createMediaElementSource(audioElement4)
+                    source4.connect(context.destination)
+                    audioElement4.play()
+                    audioElement4.pause()
+
+                    let audioElement5 = document.querySelector("#audio5") as any;
+                    let source5 = context.createMediaElementSource(audioElement5)
+                    source5.connect(context.destination)
+                    audioElement5.play()
+                    audioElement5.pause()
+
+                    let audioElement6 = document.querySelector("#audio6") as any;
+                    let source6 = context.createMediaElementSource(audioElement6)
+                    source6.connect(context.destination)
+                    audioElement6.play()
+                    audioElement6.pause()
+
+                    let audioElement7 = document.querySelector("#audio7") as any;
+                    let source7 = context.createMediaElementSource(audioElement7)
+                    source7.connect(context.destination)
+                    audioElement7.play()
+                    audioElement7.pause()
+
+                    let audioElement8 = document.querySelector("#audio8") as any;
+                    let source8 = context.createMediaElementSource(audioElement8)
+                    source8.connect(context.destination)
+                    audioElement8.play()
+                    audioElement8.pause()
+                  }catch(err){
+                    vueComp.$store.dispatch('addLog', err)
+                  }
+
+
+
+                    vueComp.$store.dispatch('addLog', "unlock called")
+                    // document.body.removeEventListener('touchstart', unlock);
+                    // document.body.removeEventListener('touchend', unlock);
+
+                    // document.body.removeEventListener('mousedown', unlock);
+                    // document.body.removeEventListener('keydown', unlock);
+
+                });
+            };
+
+            // document.body.addEventListener('touchstart', unlock, false);
+            // document.body.addEventListener('touchend', unlock, false);
+            // document.body.addEventListener('mousedown', unlock, false);
+            // document.body.addEventListener('keydown', unlock, false);
+            unlock();
+            vueComp.$data.hasUnlock = true
+        }
+      })
 
        this.$data.isAudioInitialized = true
     }
+  }
 
-    this.$store.dispatch('addLog', "state: "+ context.state)
+  onTriggerEatFood(foodObj){
 
-    this.$data.isChewing = true
-    setTimeout(() => {
-      this.$data.isChewing = false
-    }, 3000)
+      this.$store.dispatch('addLog', "state: "+ this.$data.audioContext.state)
 
-    this.eatFood(foodObj)
+      this.$data.isChewing = true
+      setTimeout(() => {
+        this.$data.isChewing = false
+      }, 3000)
 
+      this.eatFood(foodObj)
   }
 
 

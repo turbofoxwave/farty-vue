@@ -13,7 +13,7 @@ const getterObj: GetterTree<RootState, RootState> = {
 const mutationsObj: MutationTree<RootState> = {
   addLog(state, msg: string) {
     state.logs.push(msg);
-    if (state.logs.length > 10) {
+    if (state.logs.length > 50) {
       state.logs.shift();
     }
   },
