@@ -29,7 +29,7 @@
         </v-card>
         <!-- </v-layout> -->
       </v-flex>
-      <v-flex md5 sm0 >
+      <v-flex md5 sm0 pa-3 console-container >
         <!-- spacer -->
       </v-flex>
 
