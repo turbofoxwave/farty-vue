@@ -41,7 +41,7 @@ export class Anus {
                     delay *= this.fartSpan;
                 }
 
-                this.playHandler(fc, delay + 100);
+                this.playHandler(fc, delay + 500);
             }
 
             // either use setTimeout
