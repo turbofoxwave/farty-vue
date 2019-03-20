@@ -1,9 +1,12 @@
 <template>
   <v-container grid-list-sm>
     <v-layout text-xs-left wrap>
+      <v-flex>
+          <h2>Messages</h2>
+      </v-flex>
       <v-flex xs12>
           <v-flex v-for="(log,index) in logs" :key="index">
-            <div>{{log.index}}: {{log.msg}}</div>
+            <div><span class="line-label" >{{log.index}}:&nbsp;&nbsp;</span>{{log.msg}}</div>
             <v-divider></v-divider>
           </v-flex>
           <!-- <v-card>
@@ -66,5 +69,7 @@ export default class Console extends Vue {
 </script>
 
 <style>
-
+.line-label{
+    color:yellow !important;
+}
 </style>

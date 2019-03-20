@@ -15,7 +15,7 @@
   <v-content>
   <v-container fluid pa-3>
     <v-layout align-start fill-height v-bind="topLevelLayoutBinding">
-      <v-flex pa-3 xs5 v-bind="fartyPanelBinding">
+      <v-flex farty pa-3 xs5 v-bind="fartyPanelBinding">
         <!-- <v-layout> -->
         <v-card dark color = "gray">
           <Farty/>
@@ -99,4 +99,9 @@ export default {
   font-size: 10px;
 }
 
+.farty{
+  /* max-width: 350px !important; */
+  min-width: 350px !important;
+  /* width: 350px !important; */
+}
 </style>
