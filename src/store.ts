@@ -1,20 +1,22 @@
 import Vue from 'vue';
 import Vuex, { StoreOptions, MutationTree, ActionTree, GetterTree } from 'vuex';
 import { RootState } from './types';
+import { LogMessage } from './lib/LogMessage';
 
 Vue.use(Vuex);
 
 const getterObj: GetterTree<RootState, RootState> = {
-  getLogs(state): string[] {
+  getLogs(state): LogMessage[] {
     return state.logs;
   },
 };
 
+let logLineCount = 0;
 const mutationsObj: MutationTree<RootState> = {
   addLog(state, msg: string) {
-    state.logs.push(msg);
+    state.logs.unshift(new LogMessage(logLineCount++, msg));
     if (state.logs.length > 50) {
-      state.logs.shift();
+      state.logs.pop();
     }
   },
 };

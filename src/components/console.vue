@@ -2,7 +2,10 @@
   <v-container grid-list-sm>
     <v-layout text-xs-left wrap>
       <v-flex xs12>
-          <div v-for="(log,index) in logs" :key="index">{{log}}</div>
+          <v-flex v-for="(log,index) in logs" :key="index">
+            <div>{{log.index}}: {{log.msg}}</div>
+            <v-divider></v-divider>
+          </v-flex>
           <!-- <v-card>
               <v-card-text v-for="(log, index)  in logs" :key="index"> {{log}} </v-card-text>
               <v-card-text> this is where the messages display</v-card-text>
