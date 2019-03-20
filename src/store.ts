@@ -14,7 +14,9 @@ const getterObj: GetterTree<RootState, RootState> = {
 let logLineCount = 0;
 const mutationsObj: MutationTree<RootState> = {
   addLog(state, msg: string) {
-    if(logLineCount > 1000) logLineCount = 0;
+    if (logLineCount > 1000) {
+      logLineCount = 0;
+    }
     state.logs.unshift(new LogMessage(logLineCount++, msg));
     if (state.logs.length > 50) {
       state.logs.pop();
