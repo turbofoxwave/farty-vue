@@ -85,7 +85,6 @@
         <audio id="audio5" volume="1.0" ></audio>
         <audio id="audio6" volume="1.0" ></audio>
         <audio id="audio7" volume="1.0" ></audio>
-        <audio id="audio8" volume="1.0" ></audio>
       </v-flex>
     </v-layout>
   </v-container>
@@ -350,11 +349,6 @@ export default class Farty extends Vue {
       audioElement7.play()
       audioElement7.pause()
 
-      let audioElement8 = document.querySelector("#audio8") as any;
-      let source8 = context.createMediaElementSource(audioElement8)
-      source8.connect(context.destination)
-      audioElement8.play()
-      audioElement8.pause()
       vueComp.$store.dispatch('addLog', "unlocked")
 
 
