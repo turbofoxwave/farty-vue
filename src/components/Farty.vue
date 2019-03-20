@@ -112,6 +112,7 @@ import { ILog } from '../lib/ILog'
 import { Dictionary } from 'vue-router/types/router'
 import { mapMutations } from 'vuex';
 import { BasicLogger } from '../lib/BasicLogger'
+import { UILogger } from "../lib/UILogger"
 
 // We declare the props separately
 // to make props types inferable.
@@ -224,7 +225,15 @@ export default class Farty extends Vue {
   mounted() {
       if (this._anus) return;
       let vueComp = this;
-      this._log = new BasicLogger();
+
+      let uiLogger = new UILogger();
+      uiLogger.logFunc = function(msg:string){
+         vueComp.$store.dispatch('addLog', msg);
+      }
+
+      //this._log = new BasicLogger();
+      this._log = uiLogger;
+
       this._anus = new Anus({ log: this._log, playHandler: (fartComponent:FartComponent, delay) => {
           this._log.info("delay: " + delay)
           setTimeout(() => {
@@ -271,7 +280,7 @@ export default class Farty extends Vue {
       console.log("************** view checked *********************")
 
       //setup audio channels
-      for (let i = 1; i < 9; i++) {
+      for (let i = 1; i < 8; i++) {
         this.setupAudioChannel("#audio" + i, "audio" + i);
       }
   }
