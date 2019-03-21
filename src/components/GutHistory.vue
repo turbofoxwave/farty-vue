@@ -1,8 +1,9 @@
 <template>
-<v-container>
+<v-container text-xs-center>
+    <h4>Gut Levels</h4>
     <v-layout >
-    <v-card width="250">
-      <v-card-title>Fat Lvl</v-card-title>
+    <v-card color="#666666" width="250">
+      <v-card-title>Fat</v-card-title>
       <v-flex>
         <v-sparkline
         :value="gutFatLevels"
@@ -15,8 +16,8 @@
       </v-flex>
     </v-card>
 
-    <v-card width="250">
-          <v-card-title>Fiber Lvl</v-card-title>
+    <v-card color="#666666" width="250">
+          <v-card-title>Fiber</v-card-title>
       <v-flex>
         <v-sparkline
         :value="gutFiberLevels"
@@ -29,8 +30,8 @@
       </v-flex>
     </v-card>
 
-    <v-card width="250">
-      <v-card-title>Solids Lvl</v-card-title>
+    <v-card color="#666666" width="250">
+      <v-card-title>Solids</v-card-title>
       <v-flex>
         <v-sparkline
         :value="gutSolidLevels"
