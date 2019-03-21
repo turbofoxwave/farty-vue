@@ -143,25 +143,31 @@ export default class Farty extends Vue {
       id: 'food1',
       name: 'chicken',
       file: require("../assets/chicken.svg"),
-      foodObj: new Food('MEAT', 'meat1', 'audio', 15, 5, 0, 1)
+      foodObj: new Food('MEAT', 'meat1', 'audio', 15, 5, 0, 2)
     },
     {
       id: 'food2',
       name: 'hamburger',
       file: require("../assets/hamburger.svg"),
-      foodObj: new Food('SANDWICH', 'burger', 'audio', 10, 10, 5, 2)
+      foodObj: new Food('SANDWICH', 'burger', 'audio', 7, 7, 7, 2)
     },
     {
       id: 'food3',
       name: 'cheese',
       file: require("../assets/cheese.svg"),
-      foodObj: new Food('CHEESE', 'cheese1', 'audio', 10, 10, 0, 1)
+      foodObj: new Food('CHEESE', 'cheese1', 'audio', 15, 5, 0, 2)
     },
     {
       id: 'food4',
       name: 'bread',
       file: require("../assets/bread.svg"),
-      foodObj: new Food('BREAD', 'bread1', 'audio', 0, 0, 15, 2)
+      foodObj: new Food('BREAD', 'bread1', 'audio', 0, 0, 20, 2)
+    },
+    {
+      id: 'food5',
+      name: 'butter',
+      file: require("../assets/jar.svg"),
+      foodObj: new Food('BUTTER', 'butter1', 'audio', 0, 15, 0, 2)
     }
 
   ]
