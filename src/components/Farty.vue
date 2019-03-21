@@ -36,19 +36,19 @@
 
       <v-layout column align-center="true">
       <v-flex v-model="foodBag" >
-        <v-btn    class="foodItem"
+        <!-- <v-btn    class="foodItem"
             v-for="element in foodBag"
             :key="element.name"
             contain
             @click.native="onTriggerEatFood(element.foodObj)">
             {{element.name}}
-        </v-btn>
+        </v-btn> -->
         <!-- <v-btn    class="setup"
             contain
             @click.native="onSetup()">
             setup
         </v-btn> -->
-         <!-- <v-img
+         <v-img
             class="foodItem"
             v-for="element in foodBag"
             :key="element.name"
@@ -57,7 +57,7 @@
             height="64"
             width="64"
             @click="onTriggerEatFood(element.foodObj)"
-          ></v-img> -->
+          ></v-img>
         <!-- <draggable
           class="foodBag"
           v-model="foodBag"
@@ -113,6 +113,7 @@ import { Dictionary } from 'vue-router/types/router'
 import { mapMutations } from 'vuex';
 import { BasicLogger } from '../lib/BasicLogger'
 import { UILogger } from "../lib/UILogger"
+import { GutLevels } from '@/lib/GutLevels';
 
 // We declare the props separately
 // to make props types inferable.
@@ -216,8 +217,7 @@ export default class Farty extends Vue {
     audio4: true,
     audio5: true,
     audio6: true,
-    audio7: true,
-    audio8: true
+    audio7: true
   }
 
 
@@ -261,9 +261,13 @@ export default class Farty extends Vue {
           }, delay);
         }
       });
+      let self = this
 
       this._gut = new Gut({ anus: this._anus, log: this._log, fartComponents: this.fartComponents });
-      let self = this
+      this._gut.addListener('gut-change', (evt:any) =>{
+        // fixme: type weak
+        self.$store.dispatch('addGutLevels', new GutLevels(evt.detail.fatty,evt.detail.solid,evt.detail.fiber));
+      })
       // not valid until _gut and _anus are created
       this.digestionInterval = setInterval(() => {
           self._gut

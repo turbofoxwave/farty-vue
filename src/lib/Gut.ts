@@ -11,8 +11,9 @@ import { ILog } from './ILog';
 import { FartComponent } from './FartComponent';
 import { FartClassifier } from './FartClassifier';
 import { Food } from './Food';
+import { EventEmitter } from 'events';
 
-export class Gut {
+export class Gut extends EventEmitter {
 
     private anus!: Anus;
     private log: ILog = { info() { }, debug() { }, error() { } };
@@ -30,6 +31,7 @@ export class Gut {
     private foodQueue!: Food[];
 
     constructor(opts) {
+        super();
         this.init(opts);
     }
 
@@ -45,14 +47,7 @@ export class Gut {
         // list swap.. probably not the best approach. but should work.
         const temp: Food[] = [];
 
-        self.solid -= .1;
-        self.fatty -= .1;
-        self.fiber -= .1;
-
-        if (self.solid < 0) { self.solid = 0; }
-        if (self.fatty < 0) { self.fatty = 0; }
-        if (self.fiber < 0) { self.fiber = 0; }
-
+        this.reduceGutLevels(.1, .1, .1);
 
         while (self.foodQueue.length > 0) {
             const fd: Food = self.foodQueue.pop()!;
@@ -65,9 +60,7 @@ export class Gut {
             if (ftt < .1) { ftt = fd.getFatty(); }
             if (fib < .1) { fib = fd.getFiber(); }
 
-            self.solid += sld;
-            self.fatty += ftt;
-            self.fiber += fib;
+            self.increaseGutLevels(sld, ftt, fib);
 
             fd.setSolid(fd.getSolid() - sld);
             fd.setFatty(fd.getFatty() - ftt);
@@ -84,6 +77,10 @@ export class Gut {
         // this.log.info("gut fiber: "+ this.fiber);
 
         self.foodQueue = temp;
+
+        // fixme: do we care about passing food objects by ref?
+        // this.dispatchEvent(new CustomEvent('food-digestion', { detail: { foodQueue: this.foodQueue } }));
+
 
         await self.checkGutThreholds();
     }
@@ -108,9 +105,15 @@ export class Gut {
 
             // question: should we drop gut levels if we generate a fart component?
             // simulate gut relief of over bearing factors.
-            if (overFatty) { this.fatty = this.fatty * .5; }
-            if (overFiber) { this.fiber = this.fiber * .5; }
-            if (overSolid) { this.solid = this.solid * .5; }
+            let newFatty: number = this.fatty;
+            let newSolid: number = this.solid;
+            let newFiber: number = this.fiber;
+            if (overFatty) { newFatty = this.fatty * .5; }
+            if (overFiber) { newFiber = this.fiber * .5; }
+            if (overSolid) { newSolid = this.solid * .5; }
+
+            this.updateGutLevel(newSolid, newFatty, newFiber);
+
 
             return;
 
@@ -150,4 +153,35 @@ export class Gut {
         this.fiberThreshold = 10;
 
     }
+
+
+    private reduceGutLevels(solid: number, fatty: number, fiber: number) {
+        this.updateGutLevel(this.solid - solid, this.fatty - fatty, this.fiber - fiber);
+    }
+
+    private increaseGutLevels(solid: number, fatty: number, fiber: number) {
+        this.updateGutLevel(this.solid + solid, this.fatty + fatty, this.fiber + fiber);
+    }
+
+    private updateGutLevel(solid: number, fatty: number, fiber: number) {
+
+        const curSolid = this.solid;
+        const curFatty = this.fatty;
+        const curFiber = this.fiber;
+
+        this.solid = solid;
+        this.fatty = fatty;
+        this.fiber = fiber;
+
+        if (this.solid < 0) { this.solid = 0; }
+        if (this.fatty < 0) { this.fatty = 0; }
+        if (this.fiber < 0) { this.fiber = 0; }
+
+        const different = this.solid !== curSolid || this.fatty !== curFatty || this.fiber !== curFiber;
+
+        if (different) {
+            this.emit('gut-change', { detail: { solid: this.solid, fatty: this.fatty, fiber: this.fiber } });
+        }
+    }
+
 }

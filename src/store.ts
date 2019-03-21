@@ -2,12 +2,16 @@ import Vue from 'vue';
 import Vuex, { StoreOptions, MutationTree, ActionTree, GetterTree } from 'vuex';
 import { RootState } from './types';
 import { LogMessage } from './lib/LogMessage';
+import { GutLevels } from './lib/GutLevels';
 
 Vue.use(Vuex);
 
 const getterObj: GetterTree<RootState, RootState> = {
   getLogs(state): LogMessage[] {
     return state.logs;
+  },
+  getGutLevels(state): GutLevels[] {
+    return state.gutLevels;
   },
 };
 
@@ -22,17 +26,28 @@ const mutationsObj: MutationTree<RootState> = {
       state.logs.pop();
     }
   },
+  addGutLevels(state, levels: GutLevels) {
+    state.gutLevels.push(levels);
+    if (state.gutLevels.length > 200) {
+      state.gutLevels.shift();
+    }
+  },
 };
 
 const actionsObj: ActionTree<RootState, RootState> = {
   addLog({ commit }, msg: string): void {
     commit('addLog', msg);
   },
+  addGutLevels({ commit }, levels: GutLevels): void {
+    commit('addGutLevels', levels);
+  },
+
 };
 
 const storage: StoreOptions<RootState> = {
   state: {
     logs: [],
+    gutLevels: new Array<GutLevels>(),
   },
   getters: getterObj,
   mutations: mutationsObj,
