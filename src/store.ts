@@ -28,7 +28,7 @@ const mutationsObj: MutationTree<RootState> = {
   },
   addGutLevels(state, levels: GutLevels) {
     state.gutLevels.push(levels);
-    if (state.gutLevels.length > 200) {
+    if (state.gutLevels.length > 50) {
       state.gutLevels.shift();
     }
   },

@@ -6,11 +6,11 @@
       <v-flex>
         <v-sparkline
         :value="gutFatLevels"
-        :smooth="10"
         auto-draw
         height="30"
         width="100"
         line-width="1"
+        type='trend'
         ></v-sparkline>
       </v-flex>
     </v-card>
@@ -20,11 +20,11 @@
       <v-flex>
         <v-sparkline
         :value="gutFiberLevels"
-        :smooth="10"
         auto-draw
         height="30"
         width="100"
         line-width="1"
+        type='trend'
         ></v-sparkline>
       </v-flex>
     </v-card>
@@ -34,11 +34,11 @@
       <v-flex>
         <v-sparkline
         :value="gutSolidLevels"
-        :smooth="10"
         auto-draw
         height="30"
         width="100"
         line-width="1"
+        type='trend'
         ></v-sparkline>
       </v-flex>
     </v-card>
