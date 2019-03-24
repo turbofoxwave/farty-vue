@@ -14,21 +14,22 @@
           @change="onChange"
         > -->
         <v-flex mouth>
+          <!-- <man/> -->
           <v-img
             v-if="isChewing === false"
-            :src="require('../assets/still.png')"
+            :src="require('../assets/man-still.gif')"
             class="my-3"
             contain
-            height="200"
-            width="200"
+            height="300"
+            width="300"
           ></v-img>
           <v-img
             v-if="isChewing === true"
-            :src="require('../assets/chewing.gif')"
+            :src="require('../assets/man.gif')"
             class="my-3"
             contain
-            height="200"
-            width="200"
+            height="300"
+            width="300"
           ></v-img>
         </v-flex>
         <!-- </draggable> -->
@@ -94,6 +95,7 @@
 <script lang="ts">
 import { Component, Prop, Vue } from 'vue-property-decorator'
 import draggable from 'vuedraggable'
+import man from './man.vue'
 
 
 // import snd1 from "./assets/sounds/fart-c.mp3"
@@ -125,7 +127,8 @@ import { GutLevels } from '@/lib/GutLevels';
 
 @Component({
   components: {
-    draggable
+    draggable,
+    man,
   },
   methods: mapMutations([
     'mounted',
