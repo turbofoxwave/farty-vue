@@ -13,20 +13,20 @@
         <v-flex mouth>
           <!-- <man/> -->
           <v-img
-            v-if="isChewing === false"
+
             :src="require('../assets/man-still.gif')"
             class="my-3"
             contain
-            height="500"
-            width="350"
+            height="200"
+            width="300"
           ></v-img>
           <v-img
             v-if="isChewing === true"
             :src="require('../assets/man.gif')"
-            class="my-3"
+            class="my-4"
             contain
-            height="500"
-            width="350"
+            height="200"
+            width="300"
           ></v-img>
         </v-flex>
         <!-- </draggable> -->
@@ -467,4 +467,20 @@ export default class Farty extends Vue {
 .sortable-ghost {
   display: none;
 }
+.my-3{
+  z-index: 0;
+  position: relative;
+  top:0;
+  left:0;
+  margin:0px !important;
+}
+.my-4{
+  z-index:1;
+  position: absolute;
+  top:5;
+  left:250;
+  margin:0px !important;
+}
+
+
 </style>
