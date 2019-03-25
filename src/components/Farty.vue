@@ -3,9 +3,6 @@
     <v-layout text-xs-center wrap>
       <v-flex xs12>
         <h1>Feed Patrick!</h1>
-        <h2>click on some food to feed his face</h2>
-        <h3>Try different combinations and Feed him lots!</h3>
-
         <!-- <v-img :src="require('../assets/logo.svg')" class="my-3" contain height="200"></v-img> -->
         <!-- <draggable
           class="mouth"
@@ -20,16 +17,16 @@
             :src="require('../assets/man-still.gif')"
             class="my-3"
             contain
-            height="300"
-            width="300"
+            height="500"
+            width="350"
           ></v-img>
           <v-img
             v-if="isChewing === true"
             :src="require('../assets/man.gif')"
             class="my-3"
             contain
-            height="300"
-            width="300"
+            height="500"
+            width="350"
           ></v-img>
         </v-flex>
         <!-- </draggable> -->
@@ -76,6 +73,9 @@
           <!-- <div v-for="element in foodBag" :key="element.id">{{element.name}}</div>
         </draggable> -->
       </v-flex>
+      <h2>click on some food to feed his face</h2>
+      <h2>Try different combinations and Feed him lots!</h2>
+
       </v-layout>
 
       <v-flex mb-5 xs12>
