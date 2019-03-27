@@ -2,7 +2,7 @@
   <v-container>
     <v-layout text-xs-center wrap>
       <v-flex xs12>
-        <h1>Feed Patrick!</h1>
+        <h1>Feed Pete!</h1>
         <!-- <v-img :src="require('../assets/logo.svg')" class="my-3" contain height="200"></v-img> -->
         <!-- <draggable
           class="mouth"
@@ -13,8 +13,8 @@
         <v-flex mouth>
           <!-- <man/> -->
           <v-img
-
-            :src="require('../assets/man-still.gif')"
+            v-if="isChewing === false"
+            :src="require('../assets/pete-still.gif')"
             class="my-3"
             contain
             height="200"
@@ -22,7 +22,14 @@
           ></v-img>
           <v-img
             v-if="isChewing === true"
-            :src="require('../assets/man.gif')"
+            class="my-3"
+            contain
+            height="200"
+            width="300"
+          ></v-img>
+          <v-img
+            v-if="isChewing === true"
+            :src="require('../assets/pete.gif')"
             class="my-4"
             contain
             height="200"
