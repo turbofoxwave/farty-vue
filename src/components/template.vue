@@ -49,6 +49,6 @@ export default class Template extends Vue {
 
 </script>
 
-<style>
+<style lang="scss">
 
 </style>
