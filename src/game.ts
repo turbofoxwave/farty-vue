@@ -6,22 +6,23 @@ export default class GameLaunch {
 
     public static launch() {
         const game = new Phaser.Game({
-            type: Phaser.AUTO,
-            physics: {
+            'type': Phaser.AUTO,
+            'physics': {
                 default: 'arcade',
                 arcade: {
                     gravity: { y: 300 },
                     debug: false,
                 },
             },
-            scale: {
+            'scale': {
                 mode: Phaser.Scale.FIT,
                 width: 300,
                 height: 300,
                 parent: 'game-container',
             },
+            'scene': [BootScene, PlayScene],
+            'transparent': true,
 
-            scene: [BootScene, PlayScene],
         });
 
 

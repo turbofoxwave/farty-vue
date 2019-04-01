@@ -10,7 +10,7 @@ export default class PlayScene extends Scene {
     this.load.spritesheet('chomp', 'assets/pete.png', { frameWidth: 313, frameHeight: 451, endFrame: 23 });
 
 
-    this.add.image(400, 300, 'sky')
+    //this.add.image(400, 300, 'sky')
 
     const bomb = this.physics.add.image(400, 200, 'bomb')
     bomb.setCollideWorldBounds(true)

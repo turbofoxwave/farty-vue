@@ -13,9 +13,9 @@
         <v-card dark color = "gray">
           <Farty/>
         </v-card>
-        <v-card dard color = "gray">
+        <!-- <v-card dard color = "gray">
           <Game/>
-        </v-card>
+        </v-card> -->
         <v-card dark color = "gray">
           <GutHistory/>
         </v-card>
@@ -49,7 +49,7 @@
 import Farty from './components/Farty'
 import Console from './components/console'
 import GutHistory from './components/GutHistory'
-import Game from '@/components/Game'
+// import Game from '@/components/Game'
 
 export default {
   name: 'App',
@@ -91,7 +91,7 @@ export default {
     Farty
     ,Console
     ,GutHistory
-    ,Game
+    // ,Game
   },
   data: () => ({
     lorem: `Lorem ipsum dolor sit amet, mel at clita quando. Te sit oratio vituperatoribus, nam ad ipsum posidonium mediocritatem, explicari dissentiunt cu mea. Repudiare disputationi vim in, mollis iriure nec cu, alienum argumentum ius ad. Pri eu justo aeque torquatos.`

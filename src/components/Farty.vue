@@ -10,6 +10,9 @@
           :group="{name: 'eating', pull: false,put:true}"
           @change="onChange"
         > -->
+        <v-card dard color = "gray">
+          <Game/>
+        </v-card>
         <v-flex mouth>
           <!-- <man/> -->
           <v-img
@@ -113,6 +116,7 @@ import man from './man.vue'
 // import snd6 from "./assets/sounds/fart-05.mp3"
 // import snd7 from "./assets/sounds/fart-06.mp3"
 
+import Game from './Game.vue'
 import { Food } from '../lib/Food'
 import { FartComponent } from '../lib/FartComponent'
 import { Anus } from '../lib/Anus'
@@ -136,6 +140,7 @@ import { GutLevels } from '@/lib/GutLevels';
   components: {
     draggable,
     man,
+    Game,
   },
   methods: mapMutations([
     'mounted',
