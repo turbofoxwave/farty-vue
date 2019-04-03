@@ -49,7 +49,7 @@ export default class PlayScene extends Scene {
     peteChomp.scaleX = .5;
     peteChomp.scaleY = .5;
 
-    peteChomp.on('pointerdown', function(pointer){
+    peteChomp.on('chomp', function(){
       if(peteChomp.anims.isPlaying === true && peteChomp.anims.getCurrentKey() === 'pete-chomp') return;
 
       peteChomp.anims.delayedPlay(1,"pete-chomp")
@@ -58,6 +58,9 @@ export default class PlayScene extends Scene {
       },this)
     })
 
+    peteChomp.on('pointerdown', function(pointer){
+      peteChomp.emit('chomp')
+    })
     // let peteStill = this.add.sprite(100, 100, 'still', 4);
     // peteStill.scaleX = .5;
     // peteStill.scaleY = .5;
