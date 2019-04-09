@@ -30,20 +30,20 @@ export default class PlayScene extends Scene {
     //   this.sound.play('thud', { volume: 0.75 })
     // })
 
-    let bread = this.add.sprite(50,50,'bread',0)
-    bread.scaleX = .2;
-    bread.scaleY = .2;
+    // let bread = this.add.sprite(50,50,'bread',0)
+    // bread.scaleX = .2;
+    // bread.scaleY = .2;
 
 
     let patrick = this.patrick = this.add.sprite(150,100,'patrick',0)
     patrick.scaleX = .45;
     patrick.scaleY = .45;
 
-    let patrickEyes = this.patrickEyes = this.add.sprite(215,50, 'patrick-eyes', 0)
+    let patrickEyes = this.patrickEyes = this.add.sprite(215,50, 'patrick-eyes', 29)
     patrickEyes.scaleX = .25
     patrickEyes.scaleY = .25
 
-    let patrickMouth = this.patrickMouth = this.add.sprite(208,95, 'patrick-mouth',0)
+    let patrickMouth = this.patrickMouth = this.add.sprite(208,95, 'patrick-mouth',5)
     patrickMouth.scaleX = .2
     patrickMouth.scaleY = .2
 
@@ -63,7 +63,7 @@ export default class PlayScene extends Scene {
 
     let configMouthClosed = {
       key: 'patrick-mouth-closed',
-      frames: this.anims.generateFrameNumbers('patrick-mouth', { start: 0, end: 0, first: 0 }),
+      frames: this.anims.generateFrameNumbers('patrick-mouth', { start: 5, end: 5, first: 5 }),
       frameRate: 30,
       repeat: -1,
       repeatDelay: 2
@@ -75,10 +75,20 @@ export default class PlayScene extends Scene {
       key: 'patrick-eyes-googly',
       frames: this.anims.generateFrameNumbers('patrick-eyes', { start: 0, end: 28, first: 0 }),
       frameRate: 60,
-      repeat: 1,
+      repeat: 10,
       repeatDelay: 2
     };
     this.anims.create(googlyEyes);
+
+    let plainEyes = {
+      key: 'patrick-eyes-plain',
+      frames: this.anims.generateFrameNumbers('patrick-eyes', { start: 29, end: 29, first: 29 }),
+      frameRate: 30,
+      repeat: -1,
+      repeatDelay: 2
+    };
+    this.anims.create(plainEyes);
+
 
     let self = this
     patrick.on('pointerdown', function(pointer){
@@ -142,7 +152,12 @@ export default class PlayScene extends Scene {
     //   peteChomp.anims.(1,"pete-still")
     // },this)
 
+
+  }
+
+  playDizzy(){
     this.patrickEyes.anims.delayedPlay(1,"patrick-eyes-googly")
+    .anims.chain('patrick-eyes-plain')
 
   }
 

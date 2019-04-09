@@ -2,7 +2,7 @@
   <v-container>
     <v-layout text-xs-center wrap>
       <v-flex xs12>
-        <h1>Feed Pete!</h1>
+        <h1>Feed Patrick!</h1>
         <!-- <v-img :src="require('../assets/logo.svg')" class="my-3" contain height="200"></v-img> -->
         <!-- <draggable
           class="mouth"
@@ -10,35 +10,9 @@
           :group="{name: 'eating', pull: false,put:true}"
           @change="onChange"
         > -->
-        <v-card dard color = "gray">
+        <!-- <v-card dard color = "gray"> -->
           <Game/>
-        </v-card>
-        <v-flex mouth>
-          <!-- <man/> -->
-          <v-img
-            v-if="isChewing === false"
-            :src="require('../assets/pete-still.gif')"
-            class="my-3"
-            contain
-            height="200"
-            width="300"
-          ></v-img>
-          <v-img
-            v-if="isChewing === true"
-            class="my-3"
-            contain
-            height="200"
-            width="300"
-          ></v-img>
-          <v-img
-            v-if="isChewing === true"
-            :src="require('../assets/pete.gif')"
-            class="my-4"
-            contain
-            height="200"
-            width="300"
-          ></v-img>
-        </v-flex>
+        <!-- </v-card> -->
         <!-- </draggable> -->
       </v-flex>
 
@@ -277,6 +251,14 @@ export default class Farty extends Vue {
             // let source = this.$data.audioContext.createMediaElementSource(audioElement)
             // source.connect(this.$data.audioContext.destination)
 
+            //delay a smidge to align better with audio.
+            setTimeout(()=>{
+              let game:Phaser.Game =  this.$store.getters.getGame;
+              let scene:PlayScene = game.scene.getScene('PlayScene');
+              scene.playDizzy();
+            },100)
+
+
             this.$store.dispatch('addLog', fartComponent.name + " " + this.$data.audioContext.state)
 
             try {
@@ -429,12 +411,12 @@ export default class Farty extends Vue {
 
   onChange(event) {
     //todo:add food to digestion system.
-    this.$data.isChewing = true
-    setTimeout(() => {
-      this.$data.isChewing = false
-    }, 3000)
+    // this.$data.isChewing = true
+    // setTimeout(() => {
+    //   this.$data.isChewing = false
+    // }, 3000)
 
-    this.eatFood(event.added.element.foodObj)
+    // this.eatFood(event.added.element.foodObj)
 
   }
   onAdd(event) {
