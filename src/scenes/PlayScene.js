@@ -2,8 +2,13 @@ import { Scene } from 'phaser'
 
 
 export default class PlayScene extends Scene {
+
   constructor () {
     super({ key: 'PlayScene' })
+
+    this.patrick = null;
+    this.patrickMouth = null;
+    this.patrickEyes = null;
   }
 
   create () {
@@ -25,13 +30,20 @@ export default class PlayScene extends Scene {
     //   this.sound.play('thud', { volume: 0.75 })
     // })
 
-    let patrick = this.add.sprite(150,100,'patrick',0)
+    let bread = this.add.sprite(50,50,'bread',0)
+    bread.scaleX = .2;
+    bread.scaleY = .2;
+
+
+    let patrick = this.patrick = this.add.sprite(150,100,'patrick',0)
     patrick.scaleX = .45;
     patrick.scaleY = .45;
-    let patrickEyes = this.add.sprite(215,50, 'patrick-eyes', 0)
+
+    let patrickEyes = this.patrickEyes = this.add.sprite(215,50, 'patrick-eyes', 0)
     patrickEyes.scaleX = .25
     patrickEyes.scaleY = .25
-    let patrickMouth = this.add.sprite(208,95, 'patrick-mouth',0)
+
+    let patrickMouth = this.patrickMouth = this.add.sprite(208,95, 'patrick-mouth',0)
     patrickMouth.scaleX = .2
     patrickMouth.scaleY = .2
 
@@ -68,16 +80,9 @@ export default class PlayScene extends Scene {
     };
     this.anims.create(googlyEyes);
 
-
+    let self = this
     patrick.on('pointerdown', function(pointer){
-      patrickMouth.anims.delayedPlay(1,"patrick-chomp")
-      .anims.chain('patrick-mouth-closed')
-      // .on('animationcomplete', function(animation, frame){
-      //   peteChomp.anims.(1,"pete-still")
-      // },this)
-
-      patrickEyes.anims.delayedPlay(1,"patrick-eyes-googly")
-
+      self.playChomp();
     })
 
 
@@ -129,4 +134,16 @@ export default class PlayScene extends Scene {
 
   update () {
   }
+
+  playChomp(){
+    this.patrickMouth.anims.delayedPlay(1,"patrick-chomp")
+    .anims.chain('patrick-mouth-closed')
+    // .on('animationcomplete', function(animation, frame){
+    //   peteChomp.anims.(1,"pete-still")
+    // },this)
+
+    this.patrickEyes.anims.delayedPlay(1,"patrick-eyes-googly")
+
+  }
+
 }

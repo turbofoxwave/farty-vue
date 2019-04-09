@@ -25,7 +25,6 @@ import GameLaunch from '../game';
   ])
 })
 export default class Game extends Vue {
-  @Prop() private msg!: string
 
   //todo define data elements
   downloaded:boolean = false
@@ -34,8 +33,7 @@ export default class Game extends Vue {
      Promise.resolve()
     .then( () =>{
       this.downloaded = true
-
-      this.$nextTick(() => GameLaunch.launch())
+      this.$nextTick(() => this.$store.dispatch('setGame', GameLaunch.launch()) );
     })
   }
 

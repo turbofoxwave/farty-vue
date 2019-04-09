@@ -9,6 +9,8 @@ import patrick from '../assets/patrick-base_frame_0.png'
 import patrickEyes from '../assets/patrick-eyes.png'
 import patrickMouth from '../assets/patrick-mouth-chomp.png'
 
+import bread  from '../assets/bread.svg'
+
 export default class BootScene extends Scene {
   constructor () {
     super({ key: 'BootScene' })
@@ -18,6 +20,7 @@ export default class BootScene extends Scene {
     // this.load.image('sky', sky)
     // this.load.image('bomb', bomb)
     // this.load.audio('thud', [thudMp3, thudOgg])
+    this.load.image('bread', bread)
     this.load.spritesheet('patrick', patrick, { frameWidth: 540, frameHeight:443, endFrame :0})
     this.load.spritesheet('patrick-mouth', patrickMouth, { frameWidth: 256, frameHeight: 128, endFrame: 5 });
     this.load.spritesheet('patrick-eyes', patrickEyes, { frameWidth: 256, frameHeight: 64, endFrame: 28 });

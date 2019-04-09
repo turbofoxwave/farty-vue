@@ -3,6 +3,7 @@ import Vuex, { StoreOptions, MutationTree, ActionTree, GetterTree } from 'vuex';
 import { RootState } from './types';
 import { LogMessage } from './lib/LogMessage';
 import { GutLevels } from './lib/GutLevels';
+import Phaser from 'phaser';
 
 Vue.use(Vuex);
 
@@ -12,6 +13,9 @@ const getterObj: GetterTree<RootState, RootState> = {
   },
   getGutLevels(state): GutLevels[] {
     return state.gutLevels;
+  },
+  getGame(state): Phaser.Game {
+    return state.game;
   },
 };
 
@@ -32,6 +36,10 @@ const mutationsObj: MutationTree<RootState> = {
       state.gutLevels.shift();
     }
   },
+  setGame(state, game: Phaser.Game) {
+    state.game = game;
+  },
+
 };
 
 const actionsObj: ActionTree<RootState, RootState> = {
@@ -41,13 +49,16 @@ const actionsObj: ActionTree<RootState, RootState> = {
   addGutLevels({ commit }, levels: GutLevels): void {
     commit('addGutLevels', levels);
   },
-
+  setGame({ commit }, game: Phaser.Game): void {
+    commit('setGame', game);
+  },
 };
 
 const storage: StoreOptions<RootState> = {
   state: {
     logs: [],
     gutLevels: new Array<GutLevels>(),
+    game: Phaser.Game,
   },
   getters: getterObj,
   mutations: mutationsObj,

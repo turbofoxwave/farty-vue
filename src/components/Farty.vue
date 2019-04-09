@@ -116,18 +116,19 @@ import man from './man.vue'
 // import snd6 from "./assets/sounds/fart-05.mp3"
 // import snd7 from "./assets/sounds/fart-06.mp3"
 
-import Game from './Game.vue'
-import { Food } from '../lib/Food'
-import { FartComponent } from '../lib/FartComponent'
-import { Anus } from '../lib/Anus'
-import { Gut } from '../lib/Gut'
-import { ILog } from '../lib/ILog'
-import { Dictionary } from 'vue-router/types/router'
+import Game from './Game.vue';
+import { Food } from '../lib/Food';
+import { FartComponent } from '../lib/FartComponent';
+import { Anus } from '../lib/Anus';
+import { Gut } from '../lib/Gut';
+import { ILog } from '../lib/ILog';
+import { Dictionary } from 'vue-router/types/router';
 import { mapMutations } from 'vuex';
-import { BasicLogger } from '../lib/BasicLogger'
-import { UILogger } from "../lib/UILogger"
+import { BasicLogger } from '../lib/BasicLogger';
+import { UILogger } from "../lib/UILogger";
 import { GutLevels } from '@/lib/GutLevels';
-
+import  PlayScene  from '../scenes/PlayScene';
+import Phaser from 'phaser';
 // We declare the props separately
 // to make props types inferable.
 // const AppProps = Vue.extend({
@@ -315,6 +316,8 @@ export default class Farty extends Vue {
       for (let i = 1; i < 8; i++) {
         this.setupAudioChannel("#audio" + i, "audio" + i);
       }
+
+
   }
 
   async initializeAudio(){
@@ -404,10 +407,15 @@ export default class Farty extends Vue {
       this.initializeAudio().then( ()=>{
 
         this.$store.dispatch('addLog', "state: "+ this.$data.audioContext.state)
-        this.$data.isChewing = true
-        setTimeout(() => {
-          this.$data.isChewing = false
-        }, 3000)
+
+        let game:Phaser.Game =  this.$store.getters.getGame;
+        let scene:PlayScene = game.scene.getScene('PlayScene');
+        scene.playChomp();
+
+        // this.$data.isChewing = true
+        // setTimeout(() => {
+        //   this.$data.isChewing = false
+        // }, 3000)
 
         this.eatFood(foodObj)
 
