@@ -9,6 +9,8 @@ export default class PlayScene extends Scene {
     this.patrick = null;
     this.patrickMouth = null;
     this.patrickEyes = null;
+    this.foodBits = null;
+    this.fartCloudEmitter = null;
   }
 
   create () {
@@ -34,10 +36,25 @@ export default class PlayScene extends Scene {
     // bread.scaleX = .2;
     // bread.scaleY = .2;
 
+    this.fartCloudEmitter = this.add.particles('fart-cloud-1')
+    .createEmitter({
+      x:140,
+      y:150,
+      speed: { min: 100, max:150},
+      scale: {start: .2, end: .2},
+      angle: { min: -120, max: -80},
+      lifespan: {min: 1500, max: 1000},
+      //gravityY: -300
+
+    })
+    this.fartCloudEmitter.stop();
+
 
     let patrick = this.patrick = this.add.sprite(150,100,'patrick',0)
     patrick.scaleX = .45;
     patrick.scaleY = .45;
+
+    patrick.setInteractive()
 
     let patrickEyes = this.patrickEyes = this.add.sprite(215,50, 'patrick-eyes', 29)
     patrickEyes.scaleX = .25
@@ -47,15 +64,16 @@ export default class PlayScene extends Scene {
     patrickMouth.scaleX = .2
     patrickMouth.scaleY = .2
 
-    patrick.setInteractive()
-
-
+    let foodBits = this.foodBits = this.add.sprite(200,95,'food-bits',0)
+    foodBits.scaleX = .35
+    foodBits.scaleY = .35
+    foodBits.visible = false;
 
     //setup animations
     let configChomp = {
       key: 'patrick-chomp',
       frames: this.anims.generateFrameNumbers('patrick-mouth', { start: 0, end: 4, first: 4 }),
-      frameRate: 30,
+      frameRate: 24,
       repeat: 5,
       repeatDelay: 2
     };
@@ -64,7 +82,7 @@ export default class PlayScene extends Scene {
     let configMouthClosed = {
       key: 'patrick-mouth-closed',
       frames: this.anims.generateFrameNumbers('patrick-mouth', { start: 5, end: 5, first: 5 }),
-      frameRate: 30,
+      frameRate: 24,
       repeat: -1,
       repeatDelay: 2
     };
@@ -75,7 +93,7 @@ export default class PlayScene extends Scene {
       key: 'patrick-eyes-googly',
       frames: this.anims.generateFrameNumbers('patrick-eyes', { start: 0, end: 28, first: 0 }),
       frameRate: 60,
-      repeat: 10,
+      repeat: 5,
       repeatDelay: 2
     };
     this.anims.create(googlyEyes);
@@ -83,17 +101,27 @@ export default class PlayScene extends Scene {
     let plainEyes = {
       key: 'patrick-eyes-plain',
       frames: this.anims.generateFrameNumbers('patrick-eyes', { start: 29, end: 29, first: 29 }),
-      frameRate: 30,
+      frameRate: 20,
       repeat: -1,
       repeatDelay: 2
     };
     this.anims.create(plainEyes);
 
 
-    let self = this
-    patrick.on('pointerdown', function(pointer){
-      self.playChomp();
-    })
+    let foodBitsAnim = {
+      key: 'food-bits',
+      frames: this.anims.generateFrameNumbers('food-bits', { start: 0, end: 3, first: 0}),
+      frameRate: 15,
+      repeat: -1,
+      repeatDelay: 2
+    };
+    this.anims.create(foodBitsAnim);
+
+
+    // let self = this
+    // patrick.on('pointerdown', function(pointer){
+    //   self.playChomp();
+    // })
 
 
     // let configChomp = {
@@ -146,12 +174,24 @@ export default class PlayScene extends Scene {
   }
 
   playChomp(){
-    this.patrickMouth.anims.delayedPlay(1,"patrick-chomp")
-    .anims.chain('patrick-mouth-closed')
-    // .on('animationcomplete', function(animation, frame){
-    //   peteChomp.anims.(1,"pete-still")
-    // },this)
 
+    let self = this
+
+    //if(self.patrickMouth.isPlaying || self.foodBits.isPlaying) return
+    self.foodBits.visible = true;
+
+    self.foodBits.anims.play("food-bits")
+
+
+    this.patrickMouth.anims.delayedPlay(1,"patrick-chomp")
+    .on('animationcomplete', function(animation, frame){
+      if(animation.key === 'patrick-chomp'){
+        this.foodBits.visible = false;
+        this.foodBits.anims.stop();
+      }
+
+    },this)
+    .anims.chain('patrick-mouth-closed');
 
   }
 
@@ -159,6 +199,14 @@ export default class PlayScene extends Scene {
     this.patrickEyes.anims.delayedPlay(1,"patrick-eyes-googly")
     .anims.chain('patrick-eyes-plain')
 
+  }
+
+  emitFartGas(){
+    //if(this.fartCloudEmitter.on) return;
+    this.fartCloudEmitter.flow(100,.1);
+    setTimeout(() =>{
+      this.fartCloudEmitter.flow(-1,0)
+    },1000);
   }
 
 }

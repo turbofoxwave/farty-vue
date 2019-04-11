@@ -9,6 +9,12 @@ import patrick from '../assets/patrick-base_frame_0.png'
 import patrickEyes from '../assets/patrick-eyes.png'
 import patrickMouth from '../assets/patrick-mouth-chomp.png'
 
+import foodBits from '../assets/food-bits.png'
+
+import fartCloud1 from '../assets/fart-cloud-1.png'
+import fartCloud2 from '../assets/fart-cloud-2.png'
+import fartCloud3 from '../assets/fart-cloud-3.png'
+
 import bread  from '../assets/bread.svg'
 
 export default class BootScene extends Scene {
@@ -21,9 +27,14 @@ export default class BootScene extends Scene {
     // this.load.image('bomb', bomb)
     // this.load.audio('thud', [thudMp3, thudOgg])
     // this.load.image('bread', bread)
-    this.load.spritesheet('patrick', patrick, { frameWidth: 540, frameHeight:443, endFrame :0})
+    this.load.spritesheet('patrick', patrick, { frameWidth: 540, frameHeight:443, endFrame :0});
     this.load.spritesheet('patrick-mouth', patrickMouth, { frameWidth: 256, frameHeight: 128, endFrame: 5 });
     this.load.spritesheet('patrick-eyes', patrickEyes, { frameWidth: 256, frameHeight: 64, endFrame: 29 });
+    this.load.spritesheet('food-bits', foodBits, {frameWidth: 167, frameHeight: 163, endFrame: 3});
+
+    this.load.image('fart-cloud-1', fartCloud1);
+    this.load.image('fart-cloud-2', fartCloud2);
+    this.load.image('fart-cloud-3', fartCloud3);
     // this.load.spritesheet('chomp', pete, { frameWidth: 313, frameHeight: 451, endFrame: 23 });
 
   }
