@@ -14,6 +14,7 @@ import foodBits from '../assets/food-bits.png'
 import fartCloud1 from '../assets/fart-cloud-1.png'
 import fartCloud2 from '../assets/fart-cloud-2.png'
 import fartCloud3 from '../assets/fart-cloud-3.png'
+import fartClouds from '../assets/fart-clouds.png'
 
 import bread  from '../assets/bread.svg'
 
@@ -35,6 +36,8 @@ export default class BootScene extends Scene {
     this.load.image('fart-cloud-1', fartCloud1);
     this.load.image('fart-cloud-2', fartCloud2);
     this.load.image('fart-cloud-3', fartCloud3);
+
+    this.load.spritesheet('fart-clouds', fartClouds, { frameWidth: 215, frameHeight: 150, endFrame: 3});
     // this.load.spritesheet('chomp', pete, { frameWidth: 313, frameHeight: 451, endFrame: 23 });
 
   }

@@ -1,6 +1,7 @@
 import { Scene } from 'phaser'
 
 
+
 export default class PlayScene extends Scene {
 
   constructor () {
@@ -36,17 +37,22 @@ export default class PlayScene extends Scene {
     // bread.scaleX = .2;
     // bread.scaleY = .2;
 
+
+
     this.fartCloudEmitter = this.add.particles('fart-cloud-1')
     .createEmitter({
+      //only if you pass in a sprite sheet
+      //frame: { frames:[0,1,2], cycle: false},
       x:140,
       y:150,
-      speed: { min: 100, max:150},
+      speed: { min: 20, max:50},
       scale: {start: .2, end: .2},
       angle: { min: -120, max: -80},
-      lifespan: {min: 1500, max: 1000},
+      lifespan: {min: 3500, max: 3000},
       //gravityY: -300
 
     })
+
     this.fartCloudEmitter.stop();
 
 
@@ -203,10 +209,12 @@ export default class PlayScene extends Scene {
 
   emitFartGas(){
     //if(this.fartCloudEmitter.on) return;
-    this.fartCloudEmitter.flow(100,.1);
-    setTimeout(() =>{
-      this.fartCloudEmitter.flow(-1,0)
-    },1000);
+    //this.fartCloudEmitter.flow(5,[5,3,2,1]);
+    this.fartCloudEmitter.emitParticle(10)
+    //this.fartCloudEmitter.explode()
+  //   setTimeout(() =>{
+  //  //   this.fartCloudEmitter.flow(-1,0)
+  //   },100);
   }
 
 }

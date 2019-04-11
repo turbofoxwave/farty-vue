@@ -1,0 +1,36 @@
+{"frames": {
+
+"fart-cloud-1.tif":
+{
+	"frame": {"x":0,"y":0,"w":215,"h":150},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":215,"h":150},
+	"sourceSize": {"w":215,"h":150}
+},
+"fart-cloud-2.tif":
+{
+	"frame": {"x":0,"y":150,"w":215,"h":150},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":215,"h":150},
+	"sourceSize": {"w":215,"h":150}
+},
+"fart-cloud-3.tif":
+{
+	"frame": {"x":0,"y":300,"w":215,"h":150},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":215,"h":150},
+	"sourceSize": {"w":215,"h":150}
+}},
+"meta": {
+	"app": "https://www.codeandweb.com/texturepacker",
+	"version": "1.0",
+	"image": "fart-clouds.png",
+	"format": "RGBA8888",
+	"size": {"w":215,"h":450},
+	"scale": "1",
+	"smartupdate": "$TexturePacker:SmartUpdate:d781732eeff3b2455ca65201c034a254:a184d74d5921023f913b8c82dcb92552:f7b215caebd50674b88061b1aa4b42c8$"
+}
+}
