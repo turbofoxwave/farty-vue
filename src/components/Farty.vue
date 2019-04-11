@@ -259,7 +259,7 @@ export default class Farty extends Vue {
 
               scene.emitFartGas();
 
-            },100)
+            },500)
 
 
             this.$store.dispatch('addLog', fartComponent.name + " " + this.$data.audioContext.state)
