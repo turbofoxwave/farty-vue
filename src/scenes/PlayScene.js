@@ -98,7 +98,7 @@ export default class PlayScene extends Scene {
     let googlyEyes = {
       key: 'patrick-eyes-googly',
       frames: this.anims.generateFrameNumbers('patrick-eyes', { start: 0, end: 28, first: 0 }),
-      frameRate: 60,
+      frameRate: 30,
       repeat: 5,
       repeatDelay: 2
     };
@@ -210,7 +210,7 @@ export default class PlayScene extends Scene {
   emitFartGas(){
     //if(this.fartCloudEmitter.on) return;
     //this.fartCloudEmitter.flow(5,[5,3,2,1]);
-    this.fartCloudEmitter.emitParticle(10)
+    this.fartCloudEmitter.emitParticle(1)
     //this.fartCloudEmitter.explode()
   //   setTimeout(() =>{
   //  //   this.fartCloudEmitter.flow(-1,0)
