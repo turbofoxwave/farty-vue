@@ -183,7 +183,7 @@ export default class PlayScene extends Scene {
 
     let self = this
 
-    //if(self.patrickMouth.isPlaying || self.foodBits.isPlaying) return
+    if(self.patrickMouth.anims.isPlaying || self.foodBits.anims.isPlaying) return
     self.foodBits.visible = true;
 
     self.foodBits.anims.play("food-bits")
@@ -210,7 +210,7 @@ export default class PlayScene extends Scene {
   emitFartGas(){
     //if(this.fartCloudEmitter.on) return;
     //this.fartCloudEmitter.flow(5,[5,3,2,1]);
-    this.fartCloudEmitter.emitParticle(1)
+    this.fartCloudEmitter.emitParticle(3)
     //this.fartCloudEmitter.explode()
   //   setTimeout(() =>{
   //  //   this.fartCloudEmitter.flow(-1,0)
