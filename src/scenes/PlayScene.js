@@ -89,7 +89,7 @@ export default class PlayScene extends Scene {
       key: 'patrick-mouth-closed',
       frames: this.anims.generateFrameNumbers('patrick-mouth', { start: 5, end: 5, first: 5 }),
       frameRate: 24,
-      repeat: -1,
+      repeat: 0,
       repeatDelay: 2
     };
     this.anims.create(configMouthClosed);
@@ -108,7 +108,7 @@ export default class PlayScene extends Scene {
       key: 'patrick-eyes-plain',
       frames: this.anims.generateFrameNumbers('patrick-eyes', { start: 29, end: 29, first: 29 }),
       frameRate: 20,
-      repeat: -1,
+      repeat: 0,
       repeatDelay: 2
     };
     this.anims.create(plainEyes);
