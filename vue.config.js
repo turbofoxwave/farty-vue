@@ -1,5 +1,5 @@
 module.exports = {
-   productionSourceMap: false,
+   productionSourceMap: true,
    chainWebpack: config => {
       /* disable insertion of assets as data urls b/c Phaser doesn't support it */
       const rules = [
