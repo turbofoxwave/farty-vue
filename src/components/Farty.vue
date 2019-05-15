@@ -255,8 +255,8 @@ export default class Farty extends Vue {
             setTimeout(()=>{
               let game:Phaser.Game =  this.$store.getters.getGame;
               let scene:PlayScene = game.scene.getScene('PlayScene');
-              scene.playDizzy();
               setTimeout( () =>{
+                scene.playDizzy();
                 scene.emitFartGas();
               },500);
 

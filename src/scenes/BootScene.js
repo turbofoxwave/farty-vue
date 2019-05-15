@@ -30,7 +30,7 @@ export default class BootScene extends Scene {
     // this.load.image('bread', bread)
     this.load.spritesheet('patrick', patrick, { frameWidth: 540, frameHeight:443, endFrame :0});
     this.load.spritesheet('patrick-mouth', patrickMouth, { frameWidth: 256, frameHeight: 128, endFrame: 5 });
-    this.load.spritesheet('patrick-eyes', patrickEyes, { frameWidth: 256, frameHeight: 64, endFrame: 29 });
+    this.load.spritesheet('patrick-eyes', patrickEyes, { frameWidth: 190, frameHeight: 64, endFrame: 29 });
     this.load.spritesheet('food-bits', foodBits, {frameWidth: 167, frameHeight: 163, endFrame: 3});
 
     this.load.image('fart-cloud-1', fartCloud1);

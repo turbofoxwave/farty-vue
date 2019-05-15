@@ -17,8 +17,8 @@ export default class GameLaunch {
             scale: {
                 mode: Phaser.Scale.FIT,
                 //autoCenter:Phaser.Scale.CENTER_BOTH,
-                width: 300,
-                height: 200,
+                width: 350,
+                height: 300,
                 parent: 'game-container',
             },
             scene: [BootScene, PlayScene],

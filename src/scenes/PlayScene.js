@@ -56,23 +56,23 @@ export default class PlayScene extends Scene {
     this.fartCloudEmitter.stop();
 
 
-    let patrick = this.patrick = this.add.sprite(150,100,'patrick',0)
-    patrick.scaleX = .45;
-    patrick.scaleY = .45;
+    let patrick = this.patrick = this.add.sprite(160,150,'patrick',0)
+    patrick.scaleX = .6;
+    patrick.scaleY = .6;
 
     patrick.setInteractive()
 
-    let patrickEyes = this.patrickEyes = this.add.sprite(215,50, 'patrick-eyes', 29)
-    patrickEyes.scaleX = .25
-    patrickEyes.scaleY = .25
+    let patrickEyes = this.patrickEyes = this.add.sprite(240,80, 'patrick-eyes', 29)
+    patrickEyes.scaleX = .30
+    patrickEyes.scaleY = .30
 
-    let patrickMouth = this.patrickMouth = this.add.sprite(208,95, 'patrick-mouth',5)
-    patrickMouth.scaleX = .2
-    patrickMouth.scaleY = .2
+    let patrickMouth = this.patrickMouth = this.add.sprite(245,135, 'patrick-mouth',5)
+    patrickMouth.scaleX = .3
+    patrickMouth.scaleY = .3
 
-    let foodBits = this.foodBits = this.add.sprite(200,95,'food-bits',0)
-    foodBits.scaleX = .35
-    foodBits.scaleY = .35
+    let foodBits = this.foodBits = this.add.sprite(245,135,'food-bits',0)
+    foodBits.scaleX = .45
+    foodBits.scaleY = .45
     foodBits.visible = false;
 
     //setup animations
@@ -99,7 +99,7 @@ export default class PlayScene extends Scene {
       key: 'patrick-eyes-googly',
       frames: this.anims.generateFrameNumbers('patrick-eyes', { start: 0, end: 28, first: 0 }),
       frameRate: 30,
-      repeat: 5,
+      repeat: 3,
       repeatDelay: 2
     };
     this.anims.create(googlyEyes);
