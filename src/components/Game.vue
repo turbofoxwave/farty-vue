@@ -10,14 +10,6 @@ import { Component, Prop, Vue } from 'vue-property-decorator';
 import { mapMutations } from 'vuex';
 import GameLaunch from '../game';
 
-// We declare the props separately
-// to make props types inferable.
-// const AppProps = Vue.extend({
-//   props: {
-//     propMessage: String
-//   }
-// })
-
 @Component({
   components: {
   },
@@ -26,7 +18,6 @@ import GameLaunch from '../game';
 })
 export default class Game extends Vue {
 
-  //todo define data elements
   downloaded:boolean = false
 
   mounted() {
@@ -35,15 +26,6 @@ export default class Game extends Vue {
       this.downloaded = true
       this.$nextTick(() => this.$store.dispatch('setGame', GameLaunch.launch()) );
     })
-  }
-
-  onChange(event) {
-
-  }
-  onAdd(event) {
-  }
-
-  onClone(/**Event*/ evt) {
   }
 
 }

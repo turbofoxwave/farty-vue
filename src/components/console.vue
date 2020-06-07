@@ -5,18 +5,12 @@
           <h2>Messages</h2>
       </v-flex>
       <v-flex xs12>
+          <!-- bug: https://github.com/vuejs/vue-class-component/issues/360 -->
+          <!-- https://github.com/vuejs/vetur/issues/1105 -->
           <v-flex v-for="(log,index) in logs" :key="index">
             <div><span class="line-label" >{{log.index}}:&nbsp;&nbsp;</span>{{log.msg}}</div>
             <v-divider></v-divider>
           </v-flex>
-          <!-- <v-card>
-              <v-card-text v-for="(log, index)  in logs" :key="index"> {{log}} </v-card-text>
-              <v-card-text> this is where the messages display</v-card-text>
-              <v-card-text> this is where the messages display</v-card-text>
-              <v-card-text> this is where the messages display</v-card-text>
-              <v-card-text> this is where the messages display</v-card-text>
-          </v-card> -->
-        <!-- todo add stuff to say -->
       </v-flex>
     </v-layout>
   </v-container>
@@ -26,14 +20,6 @@
 <script lang="ts">
 import { Component, Prop, Vue } from 'vue-property-decorator'
 import { mapMutations } from 'vuex';
-
-// We declare the props separately
-// to make props types inferable.
-// const AppProps = Vue.extend({
-//   props: {
-//     propMessage: String
-//   }
-// })
 
 @Component({
   components: {
@@ -48,22 +34,6 @@ import { mapMutations } from 'vuex';
 })
 export default class Console extends Vue {
   @Prop() private msg!: string
-
-  //todo define data elements
-
-  mounted() {
-
-  }
-
-  onChange(event) {
-
-  }
-  onAdd(event) {
-  }
-
-  onClone(/**Event*/ evt) {
-  }
-
 }
 
 </script>

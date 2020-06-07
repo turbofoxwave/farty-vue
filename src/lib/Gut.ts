@@ -30,6 +30,9 @@ export class Gut extends EventEmitter {
 
   private foodQueue!: Food[];
 
+  private loggingFrequency: number = 10;
+  private digestionIterCount: number = 0;
+
   constructor(opts) {
     super();
     this.init(opts);
@@ -43,7 +46,10 @@ export class Gut extends EventEmitter {
     const self: Gut = this;
 
     // popfood and start digesting
-    // this.log.info("digesting food: "+this.foodQueue.length);
+    // if not digested we'll keep it in the gut for another digestion pass.
+    if (this.foodQueue.length !== 0) {
+      this.log.info('digesting food: ' + this.foodQueue.length);
+    }
     // list swap.. probably not the best approach. but should work.
     const temp: Food[] = [];
 
@@ -72,15 +78,13 @@ export class Gut extends EventEmitter {
 
     }
 
-    // this.log.info("gut solid: "+ this.solid + " fatty: "+ this.fatty+ " fiber: "+ this.fiber);
-    // this.log.info("gut fatty: "+ this.fatty);
-    // this.log.info("gut fiber: "+ this.fiber);
+    if (this.digestionIterCount % this.loggingFrequency === 0 && (this.solid !== 0 && this.fatty !== 0 && this.fiber !== 0)) {
+      this.log.info('gut solid: ' + this.solid + ' fatty: ' + this.fatty + ' fiber: ' + this.fiber);
+    }
+
+    this.digestionIterCount++;
 
     self.foodQueue = temp;
-
-    // fixme: do we care about passing food objects by ref?
-    // this.dispatchEvent(new CustomEvent('food-digestion', { detail: { foodQueue: this.foodQueue } }));
-
 
     await self.checkGutThreholds();
   }
@@ -95,7 +99,7 @@ export class Gut extends EventEmitter {
         return;
       }
 
-      // this.log.info("gut threshold reached");
+      this.log.info('gut threshold reached');
 
       // grab gut levels and create a fart component.
       // use the level to classify the type of fart component
@@ -152,9 +156,9 @@ export class Gut extends EventEmitter {
     this.fatty = 0;
     this.fiber = 0;
 
-    this.solidThreshold = 10;
-    this.fattyThreshold = 10;
-    this.fiberThreshold = 10;
+    this.solidThreshold = 20;
+    this.fattyThreshold = 20;
+    this.fiberThreshold = 20;
 
   }
 

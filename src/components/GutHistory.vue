@@ -54,14 +54,6 @@
 import { Component, Prop, Vue } from 'vue-property-decorator'
 import { mapMutations } from 'vuex';
 
-// We declare the props separately
-// to make props types inferable.
-// const AppProps = Vue.extend({
-//   props: {
-//     propMessage: String
-//   }
-// })
-
 @Component({
   components: {
   },
@@ -81,21 +73,6 @@ import { mapMutations } from 'vuex';
 })
 export default class GutHistory extends Vue {
   @Prop() private msg!: string
-
-  //todo define data elements
-
-  mounted() {
-
-  }
-
-  onChange(event) {
-
-  }
-  onAdd(event) {
-  }
-
-  onClone(/**Event*/ evt) {
-  }
 
 }
 

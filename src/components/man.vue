@@ -400,22 +400,6 @@ import { mapMutations } from 'vuex';
 })
 export default class Man extends Vue {
   @Prop() private msg!: string
-
-  //todo define data elements
-
-  mounted() {
-
-  }
-
-  onChange(event) {
-
-  }
-  onAdd(event) {
-  }
-
-  onClone(/**Event*/ evt) {
-  }
-
 }
 
 </script>
