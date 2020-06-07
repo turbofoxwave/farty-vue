@@ -4,6 +4,9 @@
     <v-layout >
     <v-card color="#666666" width="250">
       <v-card-title>Fat</v-card-title>
+
+      <!-- bug: https://github.com/vuejs/vue-class-component/issues/360 -->
+      <!-- https://github.com/vuejs/vetur/issues/1105 -->
       <v-flex>
         <v-sparkline
         :value="gutFatLevels"

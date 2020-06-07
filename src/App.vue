@@ -16,20 +16,20 @@
         <!-- <v-card dard color = "gray">
           <Game/>
         </v-card> -->
-        <!-- <v-card dark color = "gray">
+        <v-card dark color = "gray">
           <GutHistory/>
-        </v-card> -->
+        </v-card>
 
         <!-- </v-layout> -->
       </v-flex>
-<!--
+
       <v-flex pa-3 xs6 sm6 v-bind="consolePanelBinding">
         <v-layout :class="this.$vuetify.breakpoint.smAndUp?'body-1':'small-console'" column>
           <v-card dark color = "gray" >
             <Console/>
           </v-card>
         </v-layout>
-      </v-flex> -->
+      </v-flex>
 
     </v-layout>
   </v-container>

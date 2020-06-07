@@ -1,4 +1,6 @@
 # fart-vue
+A fun experiment in coding the human digestion process into a game.
+Also.... Lets test.. special keys....
 
 ## Project setup
 ```

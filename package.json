@@ -4,7 +4,7 @@
   "private": true,
   "engines": {
     "yarn": "1.x",
-    "node": "10.15.1"
+    "node": "12.16.2"
   },
   "scripts": {
     "serve": "vue-cli-service serve",
@@ -12,7 +12,8 @@
     "lint": "vue-cli-service lint",
     "test:unit": "vue-cli-service test:unit",
     "postinstall": "yarn run build",
-    "start": "node server.js"
+    "start": "node server.js",
+    "train": "node ./nn-trainer.js"
   },
   "dependencies": {
     "@mdi/font": "^2.6.95",

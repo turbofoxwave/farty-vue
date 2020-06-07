@@ -40,22 +40,7 @@
             width="64"
             @click="onTriggerEatFood(element.foodObj)"
           ></v-img>
-        <!-- <draggable
-          class="foodBag"
-          v-model="foodBag"
-          :group="{ name: 'food', pull:'clone', put: false}"
-        >
-          <v-img
-            class="foodItem"
-            v-for="element in foodBag"
-            :key="element.name"
-            :src="element.file"
-            contain
-            height="64"
-            width="64"
-          ></v-img>
-          <!-- <div v-for="element in foodBag" :key="element.id">{{element.name}}</div>
-        </draggable> -->
+
       </v-flex>
       <h2>click on some food to feed his face</h2>
       <h2>Try different combinations and Feed him lots!</h2>
@@ -111,6 +96,8 @@ import Phaser from 'phaser';
 //   }
 // })
 
+let factor = 1
+
 @Component({
   components: {
     draggable,
@@ -151,14 +138,14 @@ export default class Farty extends Vue {
       id: 'food4',
       name: 'bread',
       file: require("../assets/bread.png"),
-      foodObj: new Food('BREAD', 'bread1', 'audio', 0, 0, 20, .5)
+      foodObj: new Food('BREAD', 'bread1', 'audio', 0, 0, 20, .1)
     },
-    // {
-    //   id: 'food5',
-    //   name: 'butter',
-    //   file: require("../assets/jar.svg"),
-    //   foodObj: new Food('BUTTER', 'butter1', 'audio', 0, 15, 0, .5)
-    // }
+    {
+      id: 'food5',
+      name: 'butter',
+      file: require("../assets/jar.svg"),
+      foodObj: new Food('BUTTER', 'butter1', 'audio', 0, 15, 0, .5)
+    }
 
   ]
 
@@ -174,14 +161,15 @@ export default class Farty extends Vue {
   digestionInterval: any
 
 
+
   fartComponents: Array<FartComponent> = [
-    new FartComponent('f1', 0, 0, 10,[require('../assets/sounds/fart-c.mp3')]),
-    new FartComponent('f2', 1, 4, 5, [require('../assets/sounds/fart-01.mp3')]),
-    new FartComponent('f3', 5, 2, 3, [require('../assets/sounds/fart-02.mp3')]),
-    new FartComponent('f4', 5, 3, 2, [require('../assets/sounds/fart-03.mp3')]),
-    new FartComponent('f5', 3, 3, 4, [require('../assets/sounds/fart-04.mp3')]),
-    new FartComponent('f6', 5, 0, 5, [require('../assets/sounds/fart-05.mp3')]),
-    new FartComponent('f7', 0, 10, 0,[require('../assets/sounds/fart-06.mp3')])
+    new FartComponent('f1', factor * 0, factor *0, factor *2,[require('../assets/sounds/fart-07.mp3')]),
+    new FartComponent('f2', factor * 1, factor *4, factor *5, [require('../assets/sounds/fart-01.mp3')]),
+    new FartComponent('f3', factor * 5, factor *2, factor *3, [require('../assets/sounds/fart-02.mp3')]),
+    new FartComponent('f4', factor * 5, factor *3, factor *2, [require('../assets/sounds/fart-03.mp3')]),
+    new FartComponent('f5', factor * 3, factor *3, factor *4, [require('../assets/sounds/fart-04.mp3')]),
+    new FartComponent('f6', factor * 5, factor *0, factor *5, [require('../assets/sounds/fart-05.mp3')]),
+    new FartComponent('f7', factor * 0, factor *5, factor *0,[require('../assets/sounds/fart-06.mp3')])
 
     // new FartComponent('f1', 0, 0, 10,[require('../assets/sounds/fart-c.wav')]),
     // new FartComponent('f2', 1, 4, 5, [require('../assets/sounds/fart-01.wav')]),
@@ -237,8 +225,10 @@ export default class Farty extends Vue {
       //this._log = new BasicLogger();
       this._log = uiLogger;
 
-      this._anus = new Anus({ log: this._log, playHandler: (fartComponent:FartComponent, delay) => {
+      this._anus = new Anus({ log: this._log, playHandler: (fartComponent:FartComponent, delay:number) => {
           this._log.info("delay: " + delay)
+
+          //trigger audio output for fart release and animations
           setTimeout(() => {
             let channel = this.getAudioChannel();
             channel = "#" + channel;
@@ -251,17 +241,6 @@ export default class Farty extends Vue {
             // let source = this.$data.audioContext.createMediaElementSource(audioElement)
             // source.connect(this.$data.audioContext.destination)
 
-            //delay a smidge to align better with audio.
-            setTimeout(()=>{
-              let game:Phaser.Game =  this.$store.getters.getGame;
-              let scene:PlayScene = game.scene.getScene('PlayScene');
-              setTimeout( () =>{
-                scene.playDizzy();
-                scene.emitFartGas();
-              },500);
-
-            },500)
-
 
             this.$store.dispatch('addLog', fartComponent.name + " " + this.$data.audioContext.state)
 
@@ -273,6 +252,18 @@ export default class Farty extends Vue {
               this.$store.dispatch('addLog', err)
               this._log.error(err)
             }
+
+            //hack: delay a smidge to align animation better with audio.
+            setTimeout(()=>{
+              let game:Phaser.Game =  this.$store.getters.getGame;
+              let scene:PlayScene = game.scene.getScene('PlayScene');
+              setTimeout( () =>{
+                scene.playDizzy();
+                scene.emitFartGas();
+              },500);
+
+            },0)
+
           }, delay);
         }
       });
