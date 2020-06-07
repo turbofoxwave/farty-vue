@@ -2,38 +2,39 @@
   <v-app>
     <v-toolbar app>
       <v-toolbar-title class="headline text-uppercase">
-        <span class="font-weight-light">Farty Vue</span>
+        <span class="font-weight-light">Farty Vue - Use Chrome (pc/mac)</span>
       </v-toolbar-title>
     </v-toolbar>
-  <v-content>
-  <v-container fluid pa-3>
-    <v-layout align-start fill-height v-bind="topLevelLayoutBinding">
-      <v-flex farty pa-3 xs5 v-bind="fartyPanelBinding">
-        <!-- <v-layout> -->
-        <v-card dark color = "gray">
-          <Farty/>
-        </v-card>
-        <!-- <v-card dard color = "gray">
+    <v-content>
+      <v-container fluid pa-3>
+        <v-layout align-start fill-height v-bind="topLevelLayoutBinding">
+
+          <v-flex farty pa-3 xs5 v-bind="fartyPanelBinding">
+            <!-- <v-layout> -->
+            <v-card dark color="gray">
+              <Farty />
+            </v-card>
+            <!-- <v-card dard color = "gray">
           <Game/>
         </v-card> -->
-        <v-card dark color = "gray">
-          <GutHistory/>
-        </v-card>
+            <v-card dark color="gray">
+              <GutHistory />
+            </v-card>
 
-        <!-- </v-layout> -->
-      </v-flex>
+            <!-- </v-layout> -->
+          </v-flex>
 
-      <v-flex pa-3 xs6 sm6 v-bind="consolePanelBinding">
-        <v-layout :class="this.$vuetify.breakpoint.smAndUp?'body-1':'small-console'" column>
-          <v-card dark color = "gray" >
-            <Console/>
-          </v-card>
+          <v-flex pa-3 xs6 sm6 v-bind="consolePanelBinding">
+            <v-layout :class="this.$vuetify.breakpoint.smAndUp?'body-1':'small-console'" column>
+              <v-card dark color="gray">
+                <Console />
+              </v-card>
+            </v-layout>
+          </v-flex>
+
         </v-layout>
-      </v-flex>
-
-    </v-layout>
-  </v-container>
-  </v-content>
+      </v-container>
+    </v-content>
 
     <!-- <v-content>
       <v-layout align-center justify-center row fill-height>
@@ -54,43 +55,43 @@ import GutHistory from './components/GutHistory'
 export default {
   name: 'App',
   computed: {
-    fartyPanelBinding(){
+    fartyPanelBinding () {
       const binding = {}
-      if(this.$vuetify.breakpoint.smAndUp){
+      if (this.$vuetify.breakpoint.smAndUp) {
         binding['order-xs1'] = false
-      } else{
+      } else {
         binding['order-xs1'] = true
       }
       return binding
     }
-    ,consolePanelBinding(){
+    , consolePanelBinding () {
       const binding = {}
-      if(this.$vuetify.breakpoint.smAndUp){
+      if (this.$vuetify.breakpoint.smAndUp) {
         binding['order-xs2'] = false
-      } else{
+      } else {
         binding['order-xs2'] = true
       }
       return binding
     }
 
-    ,topLevelLayoutBinding () {
+    , topLevelLayoutBinding () {
       const binding = {}
 
-      if (this.$vuetify.breakpoint.smAndUp){
+      if (this.$vuetify.breakpoint.smAndUp) {
         binding.row = true
 
       }
-      else{
+      else {
         binding.column = true
       }
 
       return binding
     }
   }
-  ,components: {
+  , components: {
     Farty
-    ,Console
-    ,GutHistory
+    , Console
+    , GutHistory
     // ,Game
   },
   data: () => ({
@@ -111,7 +112,7 @@ export default {
   font-size: 10px;
 }
 
-.farty{
+.farty {
   /* max-width: 350px !important; */
   min-width: 350px !important;
   /* width: 350px !important; */

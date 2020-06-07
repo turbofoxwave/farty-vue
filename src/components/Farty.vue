@@ -1,5 +1,6 @@
 <template>
   <v-container>
+
     <v-layout text-xs-center wrap>
       <v-flex xs12>
         <h1>Feed Patrick!</h1>
@@ -278,18 +279,16 @@ export default class Farty extends Vue {
     let vueComp = this
 
     if (this.$data.isAudioInitialized) return
+    this.$data.isAudioInitialized = true
+
 
     let ourWindow: any = window
-    var AudioContext =
+    var _AudioContext =
       ourWindow.AudioContext ||
       ourWindow.webkitAudioContext ||
       ourWindow.mozAudioContext
 
-    var context = (this.$data.audioContext = new AudioContext())
-
-    if (context.state !== 'suspended') return
-
-    await context.resume()
+    var context = (this.$data.audioContext = new _AudioContext({latencyHint: 'interactive'}))
 
     try {
       vueComp.$store.dispatch('addLog', 'initialize audio')
@@ -341,7 +340,7 @@ export default class Farty extends Vue {
       vueComp.$store.dispatch('addLog', err)
     }
 
-    this.$data.isAudioInitialized = true
+
   }
 
   onTriggerEatFood(foodObj) {
