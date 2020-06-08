@@ -70,7 +70,7 @@ const storage: StoreOptions<RootState> = {
   state: {
     logLevel: LogLevel.INFO,
     logs: [],
-    gutLevels: new Array<GutLevels>(),
+    gutLevels: new Array<GutLevels>(new GutLevels(0, 0, 0), new GutLevels(0, 0, 0)),
     game: Phaser.Game,
   },
   getters: getterObj,

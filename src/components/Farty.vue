@@ -37,7 +37,7 @@ import { Dictionary } from 'vue-router/types/router'
 import { mapMutations } from 'vuex'
 import Phaser from 'phaser'
 
-import man from './man.vue'
+import man from './Man.vue'
 import Game from './Game.vue'
 import { Food } from '@/lib/Food'
 import { Anus } from '@/lib/Anus'

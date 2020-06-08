@@ -4,6 +4,8 @@
       <v-toolbar-title class="headline text-uppercase">
         <span class="font-weight-light">Farty Vue - Use Chrome (pc/mac)</span>
       </v-toolbar-title>
+      <v-spacer></v-spacer>
+      <v-btn flat icon @click="openSource()"><v-icon>mdi-github</v-icon></v-btn>
     </v-toolbar>
     <v-content>
       <v-container fluid pa-3>
@@ -44,7 +46,7 @@
 
 <script lang="ts">
 import Farty from '@/components/Farty.vue';
-import Console from '@/components/console.vue'
+import Console from '@/components/Console.vue'
 import GutHistory from '@/components/GutHistory.vue'
 import { Component, Prop, Vue } from 'vue-property-decorator'
 
@@ -98,6 +100,10 @@ export default class App extends Vue {
 
   toggleGutLevels(){
     this.showGutLevels = !this.showGutLevels;
+  }
+
+  openSource(){
+    window.open('https://github.com/turbofoxwave/farty-vue', '_blank')
   }
 
 }

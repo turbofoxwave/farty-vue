@@ -1,6 +1,6 @@
 {
-  "name": "fart-vue",
-  "short_name": "fart-vue",
+  "name": "farty-vue",
+  "short_name": "farty-vue",
   "icons": [
     {
       "src": "./img/icons/android-chrome-192x192.png",

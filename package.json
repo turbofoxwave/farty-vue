@@ -1,5 +1,5 @@
 {
-  "name": "fart-vue",
+  "name": "farty-vue",
   "version": "0.1.0",
   "private": true,
   "engines": {
@@ -16,7 +16,7 @@
     "train": "node ./nn-trainer.js"
   },
   "dependencies": {
-    "@mdi/font": "^2.6.95",
+    "@mdi/font": "^5.0.45",
     "convnetjs": "^0.3.0",
     "express": "^4.16.4",
     "phaser": "^3.16.2",
