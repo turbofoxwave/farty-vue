@@ -55,9 +55,9 @@ export class Anus {
 
     this.fartComponentQueue = [];
     this.startTime = 0;
-    this.timeThreshold = 5000;
+    this.timeThreshold = 2000;
     this.queueThreshold = 5;
-    this.fartSpan = 5000;
+    this.fartSpan = 2000;
 
   }
 

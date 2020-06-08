@@ -1,11 +1,9 @@
 /* Copyright (C) Michael Benjamin - All Rights Reserved
  * Written by Michael Benjamin <turbofoxwave@gmail.com>, August 2017
+
+ * The Gut Class 's purpose is to take in food items and digest them. based on digestion effects on the gut fart components are produced and formulate a fart.
  */
 
-/////
-// Gut -
-// purpose: to take in food items and digest them. based on digestion effects on the gut fart components are produced and formulate
-// a fart.
 import { Anus } from './Anus';
 import { ILog } from './ILog';
 import { FartComponent } from './FartComponent';
@@ -48,7 +46,7 @@ export class Gut extends EventEmitter {
     // popfood and start digesting
     // if not digested we'll keep it in the gut for another digestion pass.
     if (this.foodQueue.length !== 0) {
-      this.log.info('digesting food: ' + this.foodQueue.length);
+      this.log.debug('digesting food: ' + this.foodQueue.length);
     }
     // list swap.. probably not the best approach. but should work.
     const temp: Food[] = [];
@@ -78,8 +76,8 @@ export class Gut extends EventEmitter {
 
     }
 
-    if (this.digestionIterCount % this.loggingFrequency === 0 && (this.solid !== 0 && this.fatty !== 0 && this.fiber !== 0)) {
-      this.log.info('gut solid: ' + this.solid + ' fatty: ' + this.fatty + ' fiber: ' + this.fiber);
+    if (this.solid !== 0 && this.fatty !== 0 && this.fiber !== 0) {
+      this.log.debug('gut solid: ' + this.solid + ' fatty: ' + this.fatty + ' fiber: ' + this.fiber);
     }
 
     this.digestionIterCount++;

@@ -1,6 +1,7 @@
 # fart-vue
-A fun experiment in coding the human digestion process into a game.
-Also.... Lets test.. special keys....
+A fun experiment in coding the human digestion process into a game utilizing
+a Neural Network to store how gut digestion levels if solids, fats and fibers should be translated or classified
+into sound.
 
 ## Project setup
 ```

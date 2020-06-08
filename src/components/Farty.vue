@@ -183,17 +183,14 @@ export default class Farty extends Vue {
     if (this._anus) return
     let vueComp = this
 
-    let uiLogger = new UILogger()
-    uiLogger.logFunc = function(msg: string) {
+    this._log = new UILogger(function(msg: string) {
       vueComp.$store.dispatch('addLog', msg)
-    }
-
-    this._log = uiLogger
+    })
 
     this._anus = new Anus({
       log: this._log,
       playHandler: (fartComponent: FartComponent, delay: number) => {
-        this._log.info('delay: ' + delay)
+        this._log.debug('delay: ' + delay)
 
         //trigger audio output for fart release and animations
         setTimeout(() => {
@@ -218,17 +215,13 @@ export default class Farty extends Vue {
           // let source = this.$data.audioContext.createMediaElementSource(audioElement)
           // source.connect(this.$data.audioContext.destination)
 
-          this.$store.dispatch(
-            'addLog',
-            fartComponent.name + ' ' + this.$data.audioContext.state
-          )
+          this._log.info(fartComponent.name + ' ' + this.$data.audioContext.state)
 
           try {
             audioElement.play().catch(err => {
-              vueComp.$store.dispatch('addLog', err)
+              this._log.error(err)
             })
           } catch (err) {
-            this.$store.dispatch('addLog', err)
             this._log.error(err)
           }
 
@@ -293,7 +286,7 @@ export default class Farty extends Vue {
     var context = (this.$data.audioContext = new _AudioContext({latencyHint: 'interactive'}))
 
     try {
-      vueComp.$store.dispatch('addLog', 'initialize audio')
+      this._log.info('initialize audio')
 
       let audioElement1 = document.querySelector('#audio1') as any
       let source1 = context.createMediaElementSource(audioElement1)
@@ -337,9 +330,9 @@ export default class Farty extends Vue {
       audioElement7.play()
       audioElement7.pause()
 
-      vueComp.$store.dispatch('addLog', 'unlocked')
+      this._log.info('unlocked')
     } catch (err) {
-      vueComp.$store.dispatch('addLog', err)
+      this._log.error(err)
     }
 
 
@@ -350,10 +343,7 @@ export default class Farty extends Vue {
     //so we initialize which should internally only initialize one time.
     this.initializeAudio()
       .then(() => {
-        this.$store.dispatch(
-          'addLog',
-          'state: ' + this.$data.audioContext.state
-        )
+        this._log.info('state: ' + this.$data.audioContext.state)
 
         let game: Phaser.Game = this.$store.getters.getGame
         let scene: PlayScene = game.scene.getScene('PlayScene')

@@ -2,12 +2,16 @@ import Vue from 'vue';
 import Vuex, { StoreOptions, MutationTree, ActionTree, GetterTree } from 'vuex';
 import { RootState } from './types';
 import { LogMessage } from './lib/LogMessage';
+import { LogLevel } from './lib/LogLevel';
 import { GutLevels } from './lib/GutLevels';
 import Phaser from 'phaser';
 
 Vue.use(Vuex);
 
 const getterObj: GetterTree<RootState, RootState> = {
+  getLogLevel(state): number {
+    return state.logLevel;
+  },
   getLogs(state): LogMessage[] {
     return state.logs;
   },
@@ -21,10 +25,15 @@ const getterObj: GetterTree<RootState, RootState> = {
 
 let logLineCount = 0;
 const mutationsObj: MutationTree<RootState> = {
+  setLogLevel(state, level: number) {
+    state.logLevel = level;
+  },
   addLog(state, msg: string) {
+    // logline is for sequence ref.. we'll just roll it over for now if it gets to big.
     if (logLineCount > 1000) {
       logLineCount = 0;
     }
+
     state.logs.unshift(new LogMessage(logLineCount++, msg));
     if (state.logs.length > 50) {
       state.logs.pop();
@@ -43,6 +52,9 @@ const mutationsObj: MutationTree<RootState> = {
 };
 
 const actionsObj: ActionTree<RootState, RootState> = {
+  setLogLevel({ commit }, logLevel: number): void {
+    commit('setLogLevel', logLevel);
+  },
   addLog({ commit }, msg: string): void {
     commit('addLog', msg);
   },
@@ -56,6 +68,7 @@ const actionsObj: ActionTree<RootState, RootState> = {
 
 const storage: StoreOptions<RootState> = {
   state: {
+    logLevel: LogLevel.INFO,
     logs: [],
     gutLevels: new Array<GutLevels>(),
     game: Phaser.Game,

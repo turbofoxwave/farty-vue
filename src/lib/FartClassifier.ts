@@ -33,7 +33,7 @@ export class FartClassifier {
         break;
       }
     }
-    this.log.info('FartClassifier.classify  fixed out: ' + targ + ' out: ' + prediction + '  in: ' + input);
+    this.log.info('FartClassifier.classify fixed out: ' + targ + ' out: ' + prediction + '  in: ' + input);
     return targ;
   }
 
