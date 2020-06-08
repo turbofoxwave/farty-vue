@@ -1,6 +1,6 @@
 import Phaser from 'phaser';
-import BootScene from './scenes/BootScene';
-import PlayScene from './scenes/PlayScene';
+import BootScene from '@/scenes/BootScene';
+import PlayScene from '@/scenes/PlayScene';
 
 export default class GameLaunch {
 

@@ -1,10 +1,10 @@
 import Vue from 'vue';
 import Vuex, { StoreOptions, MutationTree, ActionTree, GetterTree } from 'vuex';
-import { RootState } from './types';
-import { LogMessage } from './lib/LogMessage';
-import { LogLevel } from './lib/LogLevel';
-import { GutLevels } from './lib/GutLevels';
 import Phaser from 'phaser';
+import { RootState } from '@/types';
+import { LogMessage } from '@/lib/LogMessage';
+import { LogLevel } from '@/lib/LogLevel';
+import { GutLevels } from '@/lib/GutLevels';
 
 Vue.use(Vuex);
 

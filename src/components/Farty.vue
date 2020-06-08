@@ -31,24 +31,23 @@
 </template>
 
 <script lang="ts">
-
 import { Component, Prop, Vue } from 'vue-property-decorator'
 import draggable from 'vuedraggable'
-import man from './man.vue'
-
-import Game from './Game.vue'
-import { Food } from '../lib/Food'
-import { FartComponent } from '../lib/FartComponent'
-import { Anus } from '../lib/Anus'
-import { Gut } from '../lib/Gut'
-import { ILog } from '../lib/ILog'
 import { Dictionary } from 'vue-router/types/router'
 import { mapMutations } from 'vuex'
-import { BasicLogger } from '../lib/BasicLogger'
-import { UILogger } from '../lib/UILogger'
-import { GutLevels } from '@/lib/GutLevels'
-import PlayScene from '../scenes/PlayScene'
 import Phaser from 'phaser'
+
+import man from './man.vue'
+import Game from './Game.vue'
+import { Food } from '@/lib/Food'
+import { Anus } from '@/lib/Anus'
+import { Gut } from '@/lib/Gut'
+import { ILog } from '@/lib/ILog'
+import { BasicLogger } from '@/lib/BasicLogger'
+import { UILogger } from '@/lib/UILogger'
+import { GutLevels } from '@/lib/GutLevels'
+import { FartComponent } from '@/lib/FartComponent'
+import PlayScene from '@/scenes/PlayScene'
 
 //used to experiment with tweaking the approx. classification mapping vector of fart components uniformly
 const fartComponentFactor = 1
@@ -62,7 +61,6 @@ const fartComponentFactor = 1
   methods: mapMutations(['mounted', 'onChange', 'onAdd', 'onClone'])
 })
 export default class Farty extends Vue {
-
   @Prop() private msg!: string
   audioContext!: AudioContext
   isChewing: boolean = false
@@ -215,7 +213,9 @@ export default class Farty extends Vue {
           // let source = this.$data.audioContext.createMediaElementSource(audioElement)
           // source.connect(this.$data.audioContext.destination)
 
-          this._log.info(fartComponent.name + ' ' + this.$data.audioContext.state)
+          this._log.info(
+            fartComponent.name + ' ' + this.$data.audioContext.state
+          )
 
           try {
             audioElement.play().catch(err => {
@@ -276,14 +276,15 @@ export default class Farty extends Vue {
     if (this.$data.isAudioInitialized) return
     this.$data.isAudioInitialized = true
 
-
     let ourWindow: any = window
     var _AudioContext =
       ourWindow.AudioContext ||
       ourWindow.webkitAudioContext ||
       ourWindow.mozAudioContext
 
-    var context = (this.$data.audioContext = new _AudioContext({latencyHint: 'interactive'}))
+    var context = (this.$data.audioContext = new _AudioContext({
+      latencyHint: 'interactive'
+    }))
 
     try {
       this._log.info('initialize audio')
@@ -334,8 +335,6 @@ export default class Farty extends Vue {
     } catch (err) {
       this._log.error(err)
     }
-
-
   }
 
   onTriggerEatFood(foodObj) {
@@ -348,7 +347,6 @@ export default class Farty extends Vue {
         let game: Phaser.Game = this.$store.getters.getGame
         let scene: PlayScene = game.scene.getScene('PlayScene')
         scene.playChomp()
-
 
         this.eatFood(foodObj)
       })

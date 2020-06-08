@@ -8,7 +8,7 @@
 <script lang="ts">
 import { Component, Prop, Vue } from 'vue-property-decorator';
 import { mapMutations } from 'vuex';
-import GameLaunch from '../game';
+import GameLaunch from '@/game';
 
 @Component({
   components: {

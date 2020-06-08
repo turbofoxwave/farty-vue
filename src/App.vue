@@ -18,7 +18,7 @@
             </v-card>
           </v-flex>
 
-          <v-flex pa-3 xs6 sm6 v-bind="consolePanelBinding">
+          <v-flex v-if="showLog" pa-3 xs6 sm6 v-bind="consolePanelBinding">
             <v-layout class="body-1" column>
               <v-card dark color="gray">
                 <Console />
@@ -32,11 +32,11 @@
   </v-app>
 </template>
 
-<script>
-import Farty from './components/Farty'
-import Console from './components/console'
-import GutHistory from './components/GutHistory'
-import { Component, Prop, Vue } from 'vue-property-decorator';
+<script lang="ts">
+import Farty from '@/components/Farty.vue';
+import Console from '@/components/console.vue'
+import GutHistory from '@/components/GutHistory.vue'
+import { Component, Prop, Vue } from 'vue-property-decorator'
 
 @Component({
   name: 'App',
@@ -47,19 +47,21 @@ import { Component, Prop, Vue } from 'vue-property-decorator';
   }
 })
 export default class App extends Vue {
-  get fartyPanelBinding () {
+  showLog: boolean = false;
+
+  get fartyPanelBinding() {
     const binding = {}
-    if (this.$vuetify.breakpoint.smAndUp) {
-      binding['order-xs1'] = false
+    if (this['$vuetify'].breakpoint.smAndUp) {
+      binding['order-xs1'] = false;
     } else {
-      binding['order-xs1'] = true
+      binding['order-xs1'] = true;
     }
-    return binding
+    return binding;
   }
 
-  get consolePanelBinding () {
+  get consolePanelBinding() {
     const binding = {}
-    if (this.$vuetify.breakpoint.smAndUp) {
+    if (this['$vuetify'].breakpoint.smAndUp) {
       binding['order-xs2'] = false
     } else {
       binding['order-xs2'] = true
@@ -67,21 +69,18 @@ export default class App extends Vue {
     return binding
   }
 
-  get topLevelLayoutBinding () {
-    const binding = {}
+  get topLevelLayoutBinding() {
+    const binding:{row:boolean, column:boolean} = { row:false, column: false }
 
-    if (this.$vuetify.breakpoint.smAndUp) {
+    if (this['$vuetify'].breakpoint.smAndUp) {
       binding.row = true
-
-    }
-    else {
+    } else {
       binding.column = true
     }
 
     return binding
   }
 }
-
 </script>
 <style lang="scss">
 .small-console {
