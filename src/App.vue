@@ -13,7 +13,17 @@
             <v-card dark color="gray">
               <Farty />
             </v-card>
-            <v-card dark color="gray">
+
+            <v-card dark color="gray" >
+              <v-btn @click="toggleLogs">
+                toggle logs
+              </v-btn>
+              <v-btn @click="toggleGutLevels">
+                Gut Levels
+              </v-btn>
+
+            </v-card>
+            <v-card v-if="showGutLevels" dark color="gray">
               <GutHistory />
             </v-card>
           </v-flex>
@@ -48,6 +58,7 @@ import { Component, Prop, Vue } from 'vue-property-decorator'
 })
 export default class App extends Vue {
   showLog: boolean = false;
+  showGutLevels: boolean = false;
 
   get fartyPanelBinding() {
     const binding = {}
@@ -80,6 +91,15 @@ export default class App extends Vue {
 
     return binding
   }
+
+  toggleLogs(){
+    this.showLog = !this.showLog;
+  }
+
+  toggleGutLevels(){
+    this.showGutLevels = !this.showGutLevels;
+  }
+
 }
 </script>
 <style lang="scss">
