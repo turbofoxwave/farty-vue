@@ -384,14 +384,6 @@
 import { Component, Prop, Vue } from 'vue-property-decorator'
 import { mapMutations } from 'vuex';
 
-// We declare the props separately
-// to make props types inferable.
-// const AppProps = Vue.extend({
-//   props: {
-//     propMessage: String
-//   }
-// })
-
 @Component({
   components: {
   },

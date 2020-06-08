@@ -2,7 +2,7 @@
   <v-container grid-list-sm>
     <v-layout text-xs-left wrap>
       <v-flex>
-          <h2>Messages</h2>
+          <h2>Log</h2>
       </v-flex>
       <v-flex xs12>
           <!-- bug: https://github.com/vuejs/vue-class-component/issues/360 -->
@@ -18,22 +18,21 @@
 </template>
 
 <script lang="ts">
+/**
+ * The Console component displays log messages.
+ */
+
 import { Component, Prop, Vue } from 'vue-property-decorator'
 import { mapMutations } from 'vuex';
 
-@Component({
-  components: {
-  },
-  methods: mapMutations([
-  ])
-  ,computed:{
-    logs(){
-        return this.$store.state.logs
-    }
-  }
-})
+@Component
 export default class Console extends Vue {
+
   @Prop() private msg!: string
+
+  get logs(){
+    return this.$store.state.logs
+  }
 }
 
 </script>

@@ -31,6 +31,7 @@
 </template>
 
 <script lang="ts">
+
 import { Component, Prop, Vue } from 'vue-property-decorator'
 import draggable from 'vuedraggable'
 import man from './man.vue'
@@ -49,7 +50,7 @@ import { GutLevels } from '@/lib/GutLevels'
 import PlayScene from '../scenes/PlayScene'
 import Phaser from 'phaser'
 
-//used to adjust the approx. classification mapping vector of fart components uniformly
+//used to experiment with tweaking the approx. classification mapping vector of fart components uniformly
 const fartComponentFactor = 1
 
 @Component({
@@ -61,6 +62,7 @@ const fartComponentFactor = 1
   methods: mapMutations(['mounted', 'onChange', 'onAdd', 'onClone'])
 })
 export default class Farty extends Vue {
+
   @Prop() private msg!: string
   audioContext!: AudioContext
   isChewing: boolean = false

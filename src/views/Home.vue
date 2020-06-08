@@ -1,7 +1,6 @@
 <template>
   <div class="home">
-    <img alt="Vue logo" src="../assets/logo.png">
-    <Farty msg="Welcome to Your Vue.js + TypeScript App"/>
+    <Farty/>
   </div>
 </template>
 

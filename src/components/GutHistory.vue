@@ -58,21 +58,22 @@ import { mapMutations } from 'vuex';
   components: {
   },
   methods: mapMutations([
-  ]),
-  computed:{
-      gutFatLevels(){
-          return this.$store.state.gutLevels.map( obj => obj.fatty);
-      },
-      gutFiberLevels(){
-          return this.$store.state.gutLevels.map( obj => obj.fiber);
-      },
-      gutSolidLevels(){
-          return this.$store.state.gutLevels.map( obj => obj.solid);
-      },
-  }
+  ])
 })
 export default class GutHistory extends Vue {
   @Prop() private msg!: string
+
+  get gutFatLevels(){
+      return this.$store.state.gutLevels.map( obj => obj.fatty);
+  }
+
+  get gutFiberLevels(){
+      return this.$store.state.gutLevels.map( obj => obj.fiber);
+  }
+
+  get gutSolidLevels(){
+      return this.$store.state.gutLevels.map( obj => obj.solid);
+  }
 
 }
 

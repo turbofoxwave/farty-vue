@@ -135,7 +135,7 @@ for (let i = 0; i < trainingLength; i++) {
       console.log(t + ' predicted value: ' + predicted_values1.w[0]);
     }
 
-    saveNet(net);
+    saveNet('./temp/net.json', net);
 
     if (allPass) break;
 
@@ -145,11 +145,16 @@ for (let i = 0; i < trainingLength; i++) {
 process.exit(0)
 
 ////////////////////////////////////////////////////////////////////////
-function saveNet (net) {
+/**
+ * Saves a convnet.js object to ./temp/net.json
+ * @param {string} filePath - file name and path to save to.
+ * @param {object} net - the convnetjs object to save
+ */
+function saveNet (filePath, net) {
   let json = net.toJSON();
 
   let str = JSON.stringify(json);
-  fs.writeFileSync('./temp/net.json', str, 'utf8', { flag: "w" });
+  fs.writeFileSync(filePath, str, 'utf8', { flag: "w" });
 
   let dt = new Date();
   console.log(dt + " net.json updated");
