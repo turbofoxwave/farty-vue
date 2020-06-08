@@ -1,7 +1,9 @@
+/**
+ * PlayScene.js - at some point I need to tackle getting phaser type definitions working and switching this to a typescript file.
+ */
+
+
 import { Scene } from 'phaser'
-
-
-
 export default class PlayScene extends Scene {
 
   constructor () {
