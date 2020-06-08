@@ -16,10 +16,10 @@
 
             <v-card dark color="gray" >
               <v-btn @click="toggleLogs">
-                toggle logs
+                Toggle Logs
               </v-btn>
               <v-btn @click="toggleGutLevels">
-                Gut Levels
+                Toggle Gut Levels
               </v-btn>
 
             </v-card>
