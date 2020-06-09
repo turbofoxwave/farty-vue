@@ -1,6 +1,4 @@
-/* Copyright (C) Michael Benjamin - All Rights Reserved
- * Written by Michael Benjamin <turbofoxwave@gmail.com>, August 2017
-
+/*
  * The Gut Class 's purpose is to take in food items and digest them. based on digestion effects on the gut fart components are produced and formulate a fart.
  */
 

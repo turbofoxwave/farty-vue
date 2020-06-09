@@ -1,7 +1,3 @@
-/* Copyright (C) Michael Benjamin - All Rights Reserved
- * Written by Michael Benjamin <turbofoxwave@gmail.com>, March 2019
- */
-
 import { ILog } from './ILog';
 import store from '../store';
 import {LogLevel} from './LogLevel';

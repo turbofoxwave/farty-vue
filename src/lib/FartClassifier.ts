@@ -1,7 +1,3 @@
-/* Copyright (C) Michael Benjamin - All Rights Reserved
- * Written by Michael Benjamin <turbofoxwave@gmail.com>, August 2017
- */
-
 import { ILog } from './ILog';
 import * as convnetjs from 'convnetjs';
 import netData from '../data/net.json';
