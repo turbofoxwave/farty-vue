@@ -10,6 +10,12 @@ Currently this should run on Chrome for (PC/Mac) without issue.
 * Validating the classification domain is problematic without also creating some tooling to review how a broad set of data to classify is being mapped.
   This is important to ensure the expected behavior is produced from the ANN. For this app a simple approach would be to create some unit tests that validate the classification mapping of sample food items.
 
+## Key Technologies Used
+* [Vue](https://vuejs.org/v2/guide)
+* [Vuetify](https://v15.vuetifyjs.com/en)
+* [Phaser 3](https://phaser.io)
+* [convnetjs](https://cs.stanford.edu/people/karpathy/convnetjs)
+
 ## Project setup
 ```
 yarn install
@@ -31,3 +37,4 @@ yarn run serve
 ## Todo
 * scrub function to ensure return types are in place
 * create unit tests to validate Generated ANN has desired classification mapping of food items -> fart component types
+* minimize project deps
