@@ -3,6 +3,9 @@ import { FartComponent } from './FartComponent';
 
 export type PlayHandlerFunction = (fartComponent: FartComponent, delay: number) => any;
 
+/**
+ * The Anus class is responsible for releasing Farts
+ */
 export class Anus {
 
   private log: ILog = { info() { }, debug() { }, error() { } };
@@ -17,11 +20,11 @@ export class Anus {
     this.init(opts);
   }
 
-  public playHandler: PlayHandlerFunction = function(fartComponent: FartComponent, delay: Number) { };
+  public playHandler: PlayHandlerFunction = function (fartComponent: FartComponent, delay: Number) { };
 
 
   /**
-   * Add a fart component to the Anus's internal fart componenet queue.
+   * Add a fart component to the Anus's internal fart component queue.
    * Once the Anus is at critical mass this will trigger a release.
    * @param fartComponent
    */

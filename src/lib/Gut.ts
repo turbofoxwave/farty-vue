@@ -1,6 +1,3 @@
-/*
- * The Gut Class 's purpose is to take in food items and digest them. based on digestion effects on the gut fart components are produced and formulate a fart.
- */
 
 import { Anus } from './Anus';
 import { ILog } from './ILog';
@@ -9,6 +6,9 @@ import { FartClassifier } from './FartClassifier';
 import { Food } from './Food';
 import { EventEmitter } from 'events';
 
+/**
+ * Digests Food objects which effect its internal state and potentially trigger a FartComponent to be queued for release.
+ */
 export class Gut extends EventEmitter {
 
   private anus!: Anus;
@@ -127,7 +127,7 @@ export class Gut extends EventEmitter {
    * @param input - a 3 value array representing the food to classify (solid, fatty,fiber)
    */
   public async classifyFartComponentAsync(input: [number, number, number]) {
-    const fartIndex: number = this.fartClassifier.classify(input)[0];
+    const fartIndex: number = this.fartClassifier.classify(input);
     const _fc: FartComponent = this.fartComponents[fartIndex];
     // get a modifyable clone.
     const fc: FartComponent = _fc.getClone();

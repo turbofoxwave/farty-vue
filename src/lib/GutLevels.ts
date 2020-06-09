@@ -1,3 +1,4 @@
+/**Used to define a gut level tracking object and assist with informative displays */
 export class GutLevels {
     public fatty: number = 0;
     public solid: number = 0;

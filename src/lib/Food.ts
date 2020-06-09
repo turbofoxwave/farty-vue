@@ -1,3 +1,6 @@
+/**
+ * Food which can be digested by the Gut to products Fart Components
+ */
 export class Food {
     public id: string;
     public name: string;

@@ -2,6 +2,9 @@ import { ILog } from './ILog';
 import * as convnetjs from 'convnetjs';
 import netData from '../data/net.json';
 
+/**
+ * The FartClassifier implements how to classify a foods attributes using a trained neural network and produce an index for using in a lookup array.
+ */
 export class FartClassifier {
 
   private log: ILog = { info() { }, debug() { }, error() { } };
@@ -14,7 +17,13 @@ export class FartClassifier {
     this.init(opts);
   }
 
-  public classify(input: [number, number, number]) {
+  /**
+   * Given the 3 value vector input this will classify the given food represented by its level of solid, fatty and fiber.
+   * The output will be an value intended to be used as an index into a lookup array.
+   * @param input  3 value vector [solid, fatty, fiber] used to represent the food to classify
+   * @return fart index to use.
+   */
+  public classify(input: [number, number, number]):number {
     if (input.length !== 3) { throw Error('input not length of 3'); }
     const vol = new convnetjs.Vol(input);
 
@@ -30,7 +39,7 @@ export class FartClassifier {
       }
     }
     this.log.info('FartClassifier.classify fixed out: ' + targ + ' out: ' + prediction + '  in: ' + input);
-    return targ;
+    return targ[0];
   }
 
   public getNetConfig() {

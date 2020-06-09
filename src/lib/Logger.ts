@@ -1,11 +1,14 @@
+
 import { ILog } from './ILog';
 import store from '../store';
 import {LogLevel} from './LogLevel';
 export type LogFunction = (msg: string) => any;
 
 
-
-export class UILogger implements ILog {
+/**
+ *  A logger which can be given an external logging function to use.
+ */
+export class Logger implements ILog {
   public logFunc: LogFunction;
 
   constructor(logFunc: LogFunction) {

@@ -1,3 +1,9 @@
+
+/**
+ * Defines how a Fart is represented in the system.
+ * It contains a reference to the fart sound to play which represents it.
+ *
+ */
 export class FartComponent {
     public name: string;
     public solid: number;

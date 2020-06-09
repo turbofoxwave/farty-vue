@@ -44,7 +44,7 @@ import { Anus } from '@/lib/Anus'
 import { Gut } from '@/lib/Gut'
 import { ILog } from '@/lib/ILog'
 import { BasicLogger } from '@/lib/BasicLogger'
-import { UILogger } from '@/lib/UILogger'
+import { Logger } from '@/lib/Logger'
 import { GutLevels } from '@/lib/GutLevels'
 import { FartComponent } from '@/lib/FartComponent'
 import PlayScene from '@/scenes/PlayScene'
@@ -181,7 +181,7 @@ export default class Farty extends Vue {
     if (this._anus) return
     let vueComp = this
 
-    this._log = new UILogger(function(msg: string) {
+    this._log = new Logger(function(msg: string) {
       vueComp.$store.dispatch('addLog', msg)
     })
 
