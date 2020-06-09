@@ -38,3 +38,4 @@ yarn run serve
 * scrub function to ensure return types are in place
 * create unit tests to validate Generated ANN has desired classification mapping of food items -> fart component types
 * minimize project deps
+* update deps
