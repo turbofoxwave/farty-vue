@@ -110,61 +110,19 @@ export default class Farty extends Vue {
 
   fartComponents: Array<FartComponent> = [
     //fiber fart
-    new FartComponent(
-      'f1',
-      fartComponentFactor * 0,
-      fartComponentFactor * 0,
-      fartComponentFactor * 2,
-      [require('../assets/sounds/fart-07.mp3')]
-    ),
+    new FartComponent('f1', 0, 0, 0, [require('../assets/sounds/fart-07.mp3')]),
     //fatty, fiberous fart
-    new FartComponent(
-      'f2',
-      fartComponentFactor * 1,
-      fartComponentFactor * 4,
-      fartComponentFactor * 5,
-      [require('../assets/sounds/fart-01.mp3')]
-    ),
+    new FartComponent('f2', 0, 0, 0, [require('../assets/sounds/fart-01.mp3')]),
     //mostly solid but fiberous fart
-    new FartComponent(
-      'f3',
-      fartComponentFactor * 5,
-      fartComponentFactor * 2,
-      fartComponentFactor * 3,
-      [require('../assets/sounds/fart-02.mp3')]
-    ),
+    new FartComponent('f3', 0, 0, 0, [require('../assets/sounds/fart-02.mp3')]),
     //mostly solid but fatty fart
-    new FartComponent(
-      'f4',
-      fartComponentFactor * 5,
-      fartComponentFactor * 3,
-      fartComponentFactor * 2,
-      [require('../assets/sounds/fart-03.mp3')]
-    ),
+    new FartComponent('f4', 0, 0, 0, [require('../assets/sounds/fart-03.mp3')]),
     //a balanced fart
-    new FartComponent(
-      'f5',
-      fartComponentFactor * 3,
-      fartComponentFactor * 3,
-      fartComponentFactor * 3,
-      [require('../assets/sounds/fart-04.mp3')]
-    ),
+    new FartComponent('f5', 0, 0, 0, [require('../assets/sounds/fart-04.mp3')]),
     //a solid, fiburious fart
-    new FartComponent(
-      'f6',
-      fartComponentFactor * 5,
-      fartComponentFactor * 0,
-      fartComponentFactor * 5,
-      [require('../assets/sounds/fart-05.mp3')]
-    ),
+    new FartComponent('f6', 0, 0, 0, [require('../assets/sounds/fart-05.mp3')]),
     //a stright up fatty fart.
-    new FartComponent(
-      'f7',
-      fartComponentFactor * 0,
-      fartComponentFactor * 5,
-      fartComponentFactor * 0,
-      [require('../assets/sounds/fart-06.mp3')]
-    )
+    new FartComponent('f7', 0, 0, 0, [require('../assets/sounds/fart-06.mp3')])
   ]
 
   audioChannels: Dictionary<boolean> = {

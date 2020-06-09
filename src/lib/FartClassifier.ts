@@ -10,6 +10,7 @@ export class FartClassifier {
   private log: ILog = { info() { }, debug() { }, error() { } };
   private net: any;
   private targets: number[][] = [];
+
   private targetRanges: number[][] = [];
   private trainer: any;
 
@@ -23,7 +24,7 @@ export class FartClassifier {
    * @param input  3 value vector [solid, fatty, fiber] used to represent the food to classify
    * @return fart index to use.
    */
-  public classify(input: [number, number, number]):number {
+  public classify(input: [number, number, number]): number {
     if (input.length !== 3) { throw Error('input not length of 3'); }
     const vol = new convnetjs.Vol(input);
 

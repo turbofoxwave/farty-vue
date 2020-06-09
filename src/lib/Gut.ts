@@ -100,7 +100,7 @@ export class Gut extends EventEmitter {
       // grab gut levels and create a fart component.
       // use the level to classify the type of fart component
       // queue the fart component into the anus for release.
-      const fc = await this.classifyFartComponentAsync([this.solid, this.fatty, this.fiber]);
+      const fc = await this.classifyFartComponentAsync(this.solid, this.fatty, this.fiber);
       this.anus.addFartComponent(fc);
 
       // question: should we drop gut levels if we generate a fart component?
@@ -126,11 +126,15 @@ export class Gut extends EventEmitter {
   /**
    * @param input - a 3 value array representing the food to classify (solid, fatty,fiber)
    */
-  public async classifyFartComponentAsync(input: [number, number, number]) {
-    const fartIndex: number = this.fartClassifier.classify(input);
+  public async classifyFartComponentAsync(solid: number, fatty: number, fiber: number) {
+    const fartIndex: number = this.fartClassifier.classify([solid, fatty, fiber]);
     const _fc: FartComponent = this.fartComponents[fartIndex];
-    // get a modifyable clone.
+    // get a modifiable clone.
     const fc: FartComponent = _fc.getClone();
+    // apply some tracking for future feature build out.
+    fc.solid = solid;
+    fc.fatty = fatty;
+    fc.fiber = fiber;
     fc.setStartTime(new Date().getTime());
     return fc;
   }

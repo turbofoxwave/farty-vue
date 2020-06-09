@@ -20,7 +20,7 @@ export class Anus {
     this.init(opts);
   }
 
-  public playHandler: PlayHandlerFunction = function (fartComponent: FartComponent, delay: Number) { };
+  public playHandler: PlayHandlerFunction = function(fartComponent: FartComponent, delay: Number) { };
 
 
   /**
