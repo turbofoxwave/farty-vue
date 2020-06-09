@@ -20,9 +20,13 @@ yarn install
 yarn run serve
 ```
 
-### Known issues
+## Known issues
 * audio no longer functions on IOS 13
 * does not run offline
+
+## Future Features
+* Build out Fart type buckets with additional fart effects of the type. This will add some diversity when the same fart component type is generated consecutively
+* switch log level buttons to filter on saved log messages instead of culling log messages of a higher level.
 
 ## Todo
 * scrub function to ensure return types are in place
