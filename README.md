@@ -1,5 +1,5 @@
 # farty-vue
-Farty Vue is a fun neural network usage experiment in which a neural network is trained on a desired classification space to map food attributes to a Fart type index.
+Farty Vue is a fun neural network usage experiment in which a neural network is trained on a desired classification space to map food attributes to a Fart Component type index.
 As food items are clicked to feed Patrick his gut will start digesting the food items adding to his conceptual digestive system's levels of solid, fatty and fibrous food matter. Once the Gut threshold is reached  fart components are packed into a sequence in a small time window. Once enough components are packed in or a time release limit is reached the series of fart components will be release (played)
 
 Currently this should run on Chrome for (PC/Mac) without issue.
@@ -25,9 +25,9 @@ yarn run serve
 * does not run offline
 
 ## Future Features
-* Build out Fart type buckets with additional fart effects of the type. This will add some diversity when the same fart component type is generated consecutively
+* Build out Fart Component type buckets with additional fart effects of the type. This will add some diversity when the same fart component type is generated consecutively
 * switch log level buttons to filter on saved log messages instead of culling log messages of a higher level.
 
 ## Todo
 * scrub function to ensure return types are in place
-* create unit tests to validate Generated ANN has desired classification mapping of food items -> fart types
+* create unit tests to validate Generated ANN has desired classification mapping of food items -> fart component types
