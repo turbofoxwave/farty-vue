@@ -17,6 +17,7 @@ yarn run serve
 
 ### Known issues
 * audio no longer functions on IOS 13
+* does not run offline
 
 ## Todo
 * scrub function to ensure return types are in place
