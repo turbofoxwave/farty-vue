@@ -124,9 +124,12 @@ export class Gut extends EventEmitter {
   }
 
   /**
-   * @param input - a 3 value array representing the food to classify (solid, fatty,fiber)
+   * Given a set of 3 food attributes, determine the FartComponent to use.
+   * @param solid
+   * @param fatty
+   * @param fiber
    */
-  public async classifyFartComponentAsync(solid: number, fatty: number, fiber: number) {
+  public async classifyFartComponentAsync(solid: number, fatty: number, fiber: number): Promise<FartComponent> {
     const fartIndex: number = this.fartClassifier.classify([solid, fatty, fiber]);
     const _fc: FartComponent = this.fartComponents[fartIndex];
     // get a modifiable clone.
