@@ -46,9 +46,9 @@
 
 <script lang="ts">
 import Farty from '@/components/Farty.vue';
-import Console from '@/components/Console.vue'
-import GutHistory from '@/components/GutHistory.vue'
-import { Component, Prop, Vue } from 'vue-property-decorator'
+import Console from '@/components/Console.vue';
+import GutHistory from '@/components/GutHistory.vue';
+import { Component, Prop, Vue } from 'vue-property-decorator';
 
 @Component({
   name: 'App',
@@ -75,20 +75,20 @@ export default class App extends Vue {
   get consolePanelBinding() {
     const binding = {}
     if (this['$vuetify'].breakpoint.smAndUp) {
-      binding['order-xs2'] = false
+      binding['order-xs2'] = false;
     } else {
-      binding['order-xs2'] = true
+      binding['order-xs2'] = true;
     }
-    return binding
+    return binding;
   }
 
   get topLevelLayoutBinding() {
     const binding:{row:boolean, column:boolean} = { row:false, column: false }
 
     if (this['$vuetify'].breakpoint.smAndUp) {
-      binding.row = true
+      binding.row = true;
     } else {
-      binding.column = true
+      binding.column = true;
     }
 
     return binding

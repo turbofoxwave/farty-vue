@@ -6,30 +6,24 @@
 </template>
 
 <script lang="ts">
-import { Component, Prop, Vue } from 'vue-property-decorator';
-import { mapMutations } from 'vuex';
-import GameLaunch from '@/game';
+import { Component, Prop, Vue } from 'vue-property-decorator'
+import { mapMutations } from 'vuex'
+import GameLaunch from '@/game'
 
 @Component({
-  components: {
-  },
-  methods: mapMutations([
-  ])
+  components: {},
+  methods: mapMutations([])
 })
 export default class Game extends Vue {
-
-  downloaded:boolean = false
+  downloaded: boolean = false
 
   mounted() {
-     Promise.resolve()
-    .then( () =>{
+    Promise.resolve().then(() => {
       this.downloaded = true
-      this.$nextTick(() => this.$store.dispatch('setGame', GameLaunch.launch()) );
+      this.$nextTick(() => this.$store.dispatch('setGame', GameLaunch.launch()))
     })
   }
-
 }
-
 </script>
 
 <style lang="scss" scoped>
