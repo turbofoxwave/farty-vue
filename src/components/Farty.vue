@@ -32,7 +32,6 @@
 
 <script lang="ts">
 import { Component, Prop, Vue } from 'vue-property-decorator'
-import draggable from 'vuedraggable'
 import { Dictionary } from 'vue-router/types/router'
 import { mapMutations } from 'vuex'
 import Phaser from 'phaser'
@@ -54,7 +53,6 @@ const fartComponentFactor = 1
 
 @Component({
   components: {
-    draggable,
     man,
     Game
   },
