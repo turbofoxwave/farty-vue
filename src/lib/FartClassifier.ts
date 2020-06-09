@@ -12,7 +12,6 @@ export class FartClassifier {
   private targets: number[][] = [];
 
   private targetRanges: number[][] = [];
-  private trainer: any;
 
   constructor(opts: { log?: ILog }) {
     this.init(opts);

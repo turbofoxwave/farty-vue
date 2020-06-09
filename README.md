@@ -5,6 +5,11 @@ As food items are clicked to feed Patrick his gut will start digesting the food 
 Currently this should run on Chrome for (PC/Mac) without issue.
 [Check it out here](https://farty-vue.herokuapp.com)
 
+
+## What I've learned from this experiment
+* Validating the classification domain is problematic without also creating some tooling to review how a broad set of data to classify is being mapped.
+  This is important to ensure the expected behavior is produced from the ANN. For this app a simple approach would be to create some unit tests that validate the classification mapping of sample food items.
+
 ## Project setup
 ```
 yarn install
@@ -21,3 +26,4 @@ yarn run serve
 
 ## Todo
 * scrub function to ensure return types are in place
+* create unit tests to validate Generated ANN has desired classification mapping of food items -> fart types
