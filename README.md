@@ -33,9 +33,13 @@ yarn run serve
 ## Future Features
 * Build out fart component type buckets with additional fart effects of the type. This will add some diversity when the same fart component type is generated consecutively
 * switch log level buttons to filter on saved log messages instead of culling log messages of a higher level.
+* add visualizations to depict the state of the simulated digestive system
+* add more sfx for better user engagement and stimulation. ex: sfx for chewing
 
 ## Todo
 * scrub function to ensure return types are in place
 * create unit tests to validate Generated ANN has desired classification mapping of food items -> fart component types
 * minimize project deps
 * update deps
+* switch g-analytics key to be env driven and integrated into vue.config.js
+* add concept diagrams to readme
