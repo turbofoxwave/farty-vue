@@ -1,11 +1,13 @@
-<template>
+  <template>
   <v-app>
     <v-toolbar app>
       <v-toolbar-title class="headline text-uppercase">
         <span class="font-weight-light">Farty Vue - Use Chrome (pc/mac)</span>
       </v-toolbar-title>
       <v-spacer></v-spacer>
-      <v-btn flat icon @click="openSource()"><v-icon>mdi-github</v-icon></v-btn>
+      <v-btn flat icon @click="openSource()">
+        <v-icon>mdi-github</v-icon>
+      </v-btn>
     </v-toolbar>
     <v-content>
       <v-container fluid pa-3>
@@ -16,7 +18,7 @@
               <Farty />
             </v-card>
 
-            <v-card dark color="gray" >
+            <v-card dark color="gray">
               <v-btn @click="toggleLogs">
                 Toggle Logs
               </v-btn>
@@ -41,14 +43,15 @@
         </v-layout>
       </v-container>
     </v-content>
+    <v-footer class="pl-1">Version - {{version}}</v-footer>
   </v-app>
 </template>
 
 <script lang="ts">
-import Farty from '@/components/Farty.vue';
-import Console from '@/components/Console.vue';
-import GutHistory from '@/components/GutHistory.vue';
-import { Component, Prop, Vue } from 'vue-property-decorator';
+import Farty from '@/components/Farty.vue'
+import Console from '@/components/Console.vue'
+import GutHistory from '@/components/GutHistory.vue'
+import { Component, Prop, Vue } from 'vue-property-decorator'
 
 @Component({
   name: 'App',
@@ -59,53 +62,59 @@ import { Component, Prop, Vue } from 'vue-property-decorator';
   }
 })
 export default class App extends Vue {
-  showLog: boolean = false;
-  showGutLevels: boolean = false;
+  showLog: boolean = false
+  showGutLevels: boolean = false
 
   get fartyPanelBinding() {
     const binding = {}
     if (this['$vuetify'].breakpoint.smAndUp) {
-      binding['order-xs1'] = false;
+      binding['order-xs1'] = false
     } else {
-      binding['order-xs1'] = true;
+      binding['order-xs1'] = true
     }
-    return binding;
+    return binding
   }
 
   get consolePanelBinding() {
     const binding = {}
     if (this['$vuetify'].breakpoint.smAndUp) {
-      binding['order-xs2'] = false;
+      binding['order-xs2'] = false
     } else {
-      binding['order-xs2'] = true;
+      binding['order-xs2'] = true
     }
-    return binding;
+    return binding
   }
 
   get topLevelLayoutBinding() {
-    const binding:{row:boolean, column:boolean} = { row:false, column: false }
+    const binding: { row: boolean; column: boolean } = {
+      row: false,
+      column: false
+    }
 
     if (this['$vuetify'].breakpoint.smAndUp) {
-      binding.row = true;
+      binding.row = true
     } else {
-      binding.column = true;
+      binding.column = true
     }
 
     return binding
   }
 
-  toggleLogs(){
-    this.showLog = !this.showLog;
+  get version() {
+    return process.env.PACKAGE_VERSION
   }
 
-  toggleGutLevels(){
-    this.showGutLevels = !this.showGutLevels;
+  toggleLogs() {
+    this.showLog = !this.showLog
   }
 
-  openSource(){
+  toggleGutLevels() {
+    this.showGutLevels = !this.showGutLevels
+  }
+
+  openSource() {
     window.open('https://github.com/turbofoxwave/farty-vue', '_blank')
   }
-
 }
 </script>
 <style lang="scss">
