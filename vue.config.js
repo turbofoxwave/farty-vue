@@ -1,3 +1,5 @@
+const packageJson = require('./package.json')
+
 module.exports = {
    productionSourceMap: true,
    chainWebpack: config => {
