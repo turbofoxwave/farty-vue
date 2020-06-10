@@ -11,7 +11,7 @@
         <v-flex v-model="foodBag">
           <v-img class="foodItem" v-for="element in foodBag" :key="element.name" :src="element.file" contain height="64" width="64" @click="onTriggerEatFood(element.foodObj)"></v-img>
         </v-flex>
-        <h2>click the FOOD items above to feed him.</h2>
+        <h2>Click the FOOD items above to feed him.</h2>
         <h2>Try different combinations and feed him Lots!</h2>
 
       </v-layout>
