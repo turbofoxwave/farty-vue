@@ -35,6 +35,7 @@ yarn run serve
 * switch log level buttons to filter on saved log messages instead of culling log messages of a higher level.
 * add visualizations to depict the state of the simulated digestive system
 * add more sfx for better user engagement and stimulation. ex: sfx for chewing
+* allow for realtime adjustment to classification engine (neural network)
 
 ## Todo
 * scrub function to ensure return types are in place
