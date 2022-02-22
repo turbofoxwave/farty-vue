@@ -117,7 +117,7 @@ export class Gut extends EventEmitter {
 
       return;
 
-    } catch (err) {
+    } catch (err:any) {
       this.log.error(err);
       throw err;
     }

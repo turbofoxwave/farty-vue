@@ -151,7 +151,7 @@ export default class Farty extends Vue {
           let channel
           try {
             channel = this.getAudioChannel()
-          } catch (err) {
+          } catch (err:any) {
             console.error(err)
             this._log.error(err)
             //for now we'll avoid animation and sound if no audio channel is available.
@@ -177,14 +177,14 @@ export default class Farty extends Vue {
             audioElement.play().catch(err => {
               this._log.error(err)
             })
-          } catch (err) {
+          } catch (err:any) {
             this._log.error(err)
           }
 
           //hack: delay a smidge to align animation better with audio.
           setTimeout(() => {
             let game: Phaser.Game = this.$store.getters.getGame
-            let scene: PlayScene = game.scene.getScene('PlayScene')
+            let scene: PlayScene = game.scene.getScene('PlayScene') as PlayScene;
             setTimeout(() => {
               scene.playDizzy()
               scene.emitFartGas()
@@ -288,7 +288,7 @@ export default class Farty extends Vue {
       audioElement7.pause()
 
       this._log.info('unlocked')
-    } catch (err) {
+    } catch (err:any) {
       this._log.error(err)
     }
   }
@@ -301,7 +301,7 @@ export default class Farty extends Vue {
         this._log.info('state: ' + this.$data.audioContext.state)
 
         let game: Phaser.Game = this.$store.getters.getGame
-        let scene: PlayScene = game.scene.getScene('PlayScene')
+        let scene: PlayScene = game.scene.getScene('PlayScene') as PlayScene;
         scene.playChomp()
 
         this.eatFood(foodObj)

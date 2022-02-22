@@ -5,7 +5,7 @@
   "license": "SEE LICENSE IN LICENSE.md",
   "engines": {
     "yarn": "1.x",
-    "node": "12.16.2"
+    "node": "14.x.x"
   },
   "scripts": {
     "serve": "vue-cli-service serve",
@@ -37,6 +37,7 @@
   },
   "devDependencies": {
     "@types/jest": "^24.0.19",
+    "@types/node": "^17.0.19",
     "@vue/cli-plugin-babel": "~4.4.1",
     "@vue/cli-plugin-pwa": "~4.4.1",
     "@vue/cli-plugin-router": "~4.4.1",

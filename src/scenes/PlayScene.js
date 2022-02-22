@@ -111,7 +111,7 @@ export default class PlayScene extends Scene {
     self.foodBits.anims.play("food-bits")
 
 
-    this.patrickMouth.anims.delayedPlay(1,"patrick-chomp")
+    this.patrickMouth.anims.playAfterDelay("patrick-chomp", 1)
     .on('animationcomplete', function(animation, frame){
       if(animation.key === 'patrick-chomp'){
         this.foodBits.visible = false;
@@ -124,7 +124,7 @@ export default class PlayScene extends Scene {
   }
 
   playDizzy(){
-    this.patrickEyes.anims.delayedPlay(1,"patrick-eyes-googly")
+    this.patrickEyes.anims.playAfterDelay("patrick-eyes-googly", 1)
     .anims.chain('patrick-eyes-plain')
   }
 
