@@ -151,9 +151,10 @@ export default class Farty extends Vue {
           let channel
           try {
             channel = this.getAudioChannel()
-          } catch (err:any) {
-            console.error(err)
-            this._log.error(err)
+          } catch (err) {
+            const error = err as Error;
+            console.error(error)
+            this._log.error(error.message)
             //for now we'll avoid animation and sound if no audio channel is available.
             return
           }
@@ -177,8 +178,10 @@ export default class Farty extends Vue {
             audioElement.play().catch(err => {
               this._log.error(err)
             })
-          } catch (err:any) {
-            this._log.error(err)
+          } catch (err) {
+            const error = err as Error;
+            console.error(error)
+            this._log.error(error.message)
           }
 
           //hack: delay a smidge to align animation better with audio.
